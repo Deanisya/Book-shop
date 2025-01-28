@@ -1,0 +1,17 @@
+.listMenu {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
+	.linkList {
+		border-right: 2px solid #d1d1d1;
+		padding-right: 20px;
+		&:last-child {
+			border: none;
+		}
+		.linkTitle {
+			font-size: 18px;
+			text-transform: uppercase;
+		}
+	}
+}
