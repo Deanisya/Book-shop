@@ -1,0 +1,19 @@
+.carousel-indicators {
+	display: flex; /* Используйте flexbox для выравнивания */
+	justify-content: center; /* Центрирование индикаторов */
+	gap: 10px;
+}
+
+.carousel-indicators [data-bs-target] {
+	width: 12px; /* Ширина индикатора */
+	height: 12px; /* Высота индикатора */
+	border-radius: 50%;
+}
+
+.carousel-indicators .active {
+	width: 18px; /* Увеличенная ширина активного индикатора */
+	height: 18px; /* Увеличенная высота активного индикатора */
+	background-color: transparent;
+	border: 1px solid #fff;
+	margin-top: 6px; /* Сдвиг вниз, чтобы компенсировать увеличение размера */
+}

@@ -1,17 +1,16 @@
+@import '../../styles/variables.scss';
 .icons {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 20px;
+	gap: 40px;
 	.linkIcons {
-		border-right: 2px solid #d1d1d1;
-		padding-right: 20px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
-		&:last-child {
-			border: none;
+		&:first-child {
+			border-left: 2px solid $light-colors-dark-gray-light;
+			padding-left: 2rem;
 		}
 	}
 }

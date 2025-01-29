@@ -1,13 +1,18 @@
 import './App.css';
+
 import Header from './components/Header/Header';
-import Books from './components/Books/Books';
+// import Books from './components/Books/Books';
+import SectionContainer from './components/SectionContainer/SectionContainer';
+import UncontrolledExample from './components/bootstrapComponents/UncontrolledExample';
 
 function App() {
 	return (
-		<>
+		<SectionContainer>
 			<Header />
-			<Books />
-		</>
+			<UncontrolledExample />
+
+			{/* <Books /> */}
+		</SectionContainer>
 	);
 }
 
@@ -28,3 +33,5 @@ export default App;
 	<Route path='/' element={<FooterPortfolio />} />
 </Routes>; */
 }
+
+// @import '../../styles/variables.scss';

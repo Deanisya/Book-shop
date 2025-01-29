@@ -1,0 +1,38 @@
+// @import '../../styles/variables.scss';
+
+// Определение SCSS-переменных
+$dark-colors-accent-dark: #b4a186;
+$dark-colors-light-gray-dark: #9a9a9a;
+$dark-colors-gray-dark: #3d3d3d;
+$dark-colors-dark-gray-dark: #272727;
+$dark-colors-black-dark: #0a0a0a;
+$dark-colors-white-dark: #fbfbfb;
+
+$light-colors-errors-light: #d82700;
+$light-colors-accent-light: #a18a68;
+$light-colors-black-light: #000;
+$light-colors-dark-gray-light: #707070;
+$light-colors-gray-light: #d8d8d8;
+$light-colors-light-gray-light: #efefef;
+$light-colors-white-light: #fff;
+
+// Шрифты
+
+$font-family: 'DM Sans', sans-serif;
+$second-family: 'Allerta Stencil', sans-serif;
+
+// Кнопки
+
+.button__light {
+	border: 1px solid $light-colors-black-light;
+	border-radius: 4px;
+	width: 288px;
+	height: 32px;
+}
+.button__dark {
+	border: 1px solid $light-colors-black-light;
+	border-radius: 4px;
+	width: 288px;
+	height: 32px;
+	background-color: $light-colors-black-light;
+}
