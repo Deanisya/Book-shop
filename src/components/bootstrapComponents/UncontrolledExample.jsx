@@ -1,37 +1,39 @@
+import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import ExampleCarouselImage from '../bootstrapComponents/ExampleCarouselImage';
 import './UncontrolledExample.css';
 
 function UncontrolledExample() {
+	const [paused, setPaused] = useState(false);
+
+	const handleMouseEnter = () => {
+		setPaused(true);
+	};
+
+	const handleMouseLeave = () => {
+		setPaused(false);
+	};
+
 	return (
-		<Carousel controls={false} indicators={true}>
+		<Carousel
+			controls={false}
+			indicators={true}
+			interval={null} // Отключаем автоматическую прокрутку
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+			pause={paused ? 'hover' : false} // Остановка карусели при наведении
+		>
 			<Carousel.Item>
 				<ExampleCarouselImage text='First slide' />
-				<Carousel.Caption>
-					<h3>First slide label</h3>
-					<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-				</Carousel.Caption>
+				<Carousel.Caption></Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
 				<ExampleCarouselImage text='Second slide' />
-				<Carousel.Caption>
-					<h3>Second slide label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-				</Carousel.Caption>
+				<Carousel.Caption></Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
 				<ExampleCarouselImage text='Third slide' />
-				<Carousel.Caption>
-					<h3>Third slide label</h3>
-					<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-				</Carousel.Caption>
-			</Carousel.Item>
-			<Carousel.Item>
-				<ExampleCarouselImage text='Four slide' />
-				<Carousel.Caption>
-					<h3>Third slide label</h3>
-					<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-				</Carousel.Caption>
+				<Carousel.Caption></Carousel.Caption>
 			</Carousel.Item>
 		</Carousel>
 	);

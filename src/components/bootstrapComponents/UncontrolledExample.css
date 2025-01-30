@@ -1,19 +1,23 @@
 .carousel-indicators {
-	display: flex; /* Используйте flexbox для выравнивания */
-	justify-content: center; /* Центрирование индикаторов */
+	display: flex;
+	justify-content: center;
 	gap: 10px;
 }
 
 .carousel-indicators [data-bs-target] {
-	width: 12px; /* Ширина индикатора */
-	height: 12px; /* Высота индикатора */
+	width: 12px;
+	height: 12px;
 	border-radius: 50%;
 }
 
 .carousel-indicators .active {
-	width: 18px; /* Увеличенная ширина активного индикатора */
-	height: 18px; /* Увеличенная высота активного индикатора */
+	width: 18px;
+	height: 18px;
 	background-color: transparent;
 	border: 1px solid #fff;
-	margin-top: 6px; /* Сдвиг вниз, чтобы компенсировать увеличение размера */
+	margin-top: 6px;
+}
+
+.carousel-inner {
+	border-radius: 16px;
 }

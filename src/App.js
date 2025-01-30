@@ -1,18 +1,21 @@
 import './App.css';
 
 import Header from './components/Header/Header';
+import PopularBooks from './components/PopularBooks/PopularBooks';
 // import Books from './components/Books/Books';
 import SectionContainer from './components/SectionContainer/SectionContainer';
 import UncontrolledExample from './components/bootstrapComponents/UncontrolledExample';
 
 function App() {
 	return (
-		<SectionContainer>
-			<Header />
-			<UncontrolledExample />
-
-			{/* <Books /> */}
-		</SectionContainer>
+		<>
+			<SectionContainer>
+				<Header />
+				{/* <UncontrolledExample /> */}
+				{/* <Books /> */}
+				<PopularBooks />
+			</SectionContainer>
+		</>
 	);
 }
 
