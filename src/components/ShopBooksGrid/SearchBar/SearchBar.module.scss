@@ -1,0 +1,15 @@
+@import '../../../styles/variables.scss';
+.searchBar {
+	border-bottom: 1px solid $light-colors-gray-light;
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 10px;
+	input,
+	button {
+		border: none;
+		background: transparent;
+	}
+
+	// width: 261px;
+	// height: 0px;
+}

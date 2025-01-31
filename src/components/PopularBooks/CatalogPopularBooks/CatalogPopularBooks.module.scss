@@ -1,0 +1,77 @@
+@import '../../../styles/variables.scss';
+
+.listPopularBooks {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0;
+	justify-content: space-around;
+	gap: 15px;
+	.popularBook {
+		width: 180px;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		.backgroundImageBook {
+			position: relative;
+			background: #efeee8;
+			width: 100%;
+			height: 260px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 8px;
+			&:hover .addBookToCart {
+				opacity: 1;
+			}
+			.imageBook {
+				transition: all 0.3s ease-in-out;
+				width: 120px;
+				height: 180px;
+				box-shadow: 0 0 10px 2px rgba(34, 60, 80, 0.5);
+			}
+			.addBookToCart {
+				position: absolute;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				width: 96%;
+				height: 30px;
+				background: rgba(255, 255, 255);
+				border: none;
+				bottom: 25%;
+				border-radius: 8px;
+				font-weight: 700;
+				font-size: 15px;
+				color: $dark-colors-light-gray-dark;
+				text-transform: uppercase;
+			}
+		}
+
+		.titleBook {
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 130%;
+			text-align: center;
+			color: $light-colors-black-light;
+			height: 43px;
+			margin: 20px 0 15px;
+		}
+		.authorBook {
+			font-weight: 400;
+			font-size: 13px;
+			letter-spacing: 0.02em;
+			text-transform: capitalize;
+			text-align: center;
+			color: $light-colors-dark-gray-light;
+		}
+		.priceBook {
+			font-weight: 400;
+			font-size: 18px;
+			letter-spacing: 0.02em;
+			text-transform: capitalize;
+			text-align: center;
+			color: $light-colors-accent-light;
+			align-items: flex-end;
+		}
+	}
+}

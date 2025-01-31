@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import PopularBooks from './components/PopularBooks/PopularBooks';
 // import Books from './components/Books/Books';
 import SectionContainer from './components/SectionContainer/SectionContainer';
+import ShopBooksGrid from './components/ShopBooksGrid/ShopBooksGrid';
 import UncontrolledExample from './components/bootstrapComponents/UncontrolledExample';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
 				<Header />
 				{/* <UncontrolledExample /> */}
 				{/* <Books /> */}
-				<PopularBooks />
+				{/* <PopularBooks /> */}
+				<ShopBooksGrid />
 			</SectionContainer>
 		</>
 	);

@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+.allProducts {
+	display: flex;
+	justify-content: flex-end;
+	.linkAllProducts {
+		border: 1px solid $dark-colors-light-gray-dark;
+		background: transparent;
+		border-radius: 8px;
+		padding: 10px 40px;
+		color: $dark-colors-light-gray-dark;
+		text-decoration: none;
+		&:hover {
+			background: #efeee8;
+		}
+	}
+}
