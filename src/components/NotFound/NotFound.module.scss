@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+.notFound {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 70vh;
+	.titleError {
+		font-weight: 500;
+		font-size: 33px;
+		line-height: 130%;
+		color: $light-colors-black-light;
+	}
+	.subTitleError {
+		margin-top: 24px;
+		margin-bottom: 64px;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 130%;
+		text-align: center;
+		color: $light-colors-dark-gray-light;
+	}
+	.btnReturnHomePage {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border: 1px solid $light-colors-black-light;
+		border-radius: 4px;
+		width: 187px;
+		height: 53px;
+		background: $light-colors-white-light;
+		font-weight: 700;
+		font-size: 16px;
+		color: $light-colors-black-light;
+		cursor: pointer;
+	}
+}

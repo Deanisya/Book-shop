@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+.contacts {
+	padding: 125px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.subTitle {
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 130%;
+		text-align: center;
+		color: $light-colors-black-light;
+		margin-top: 39px;
+		margin-bottom: 108px;
+	}
+	.contactsForm {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 94px;
+		width: 60%;
+		.contactsFormLabel {
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			column-gap: 116px;
+			row-gap: 94px;
+		}
+		.contactsFormLabelInputMessage {
+			margin-top: 94px;
+			margin-bottom: 96px;
+			width: 100%;
+			height: 39px;
+			border: none;
+			outline: none;
+			border-bottom: 1px solid $light-colors-gray-light;
+		}
+	}
+}

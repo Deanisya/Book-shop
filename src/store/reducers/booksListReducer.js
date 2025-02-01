@@ -4,19 +4,30 @@ const API_KEY = 'AIzaSyAmAcNt2YEJaAyzDMRxBsDxafm-3tC3bY4';
 const initialState = {
 	popularBooks: [],
 	books: [],
-	// query: '',
+	query: '',
 	loading: false,
 	error: null,
 };
 
 // Асинхронное действие для получения популярных книг
 export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', async () => {
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=it&maxResults=12&orderBy=relevance&key=${API_KEY}`);
+	// Проверяем, есть ли кешированные данные
+	// const cachedBooks = localStorage.getItem('popularBooks');
+	// if (cachedBooks) {
+	// 	console.log('Загружаем книги из localStorage');
+	// 	return JSON.parse(cachedBooks);
+	// }
+
+	// Если данных нет — делаем запрос
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=fiction&maxResults=12&orderBy=relevance&key=${API_KEY}`);
 	if (!response.ok) {
 		throw new Error('Ошибка при загрузке данных');
 	}
 	const data = await response.json();
-	console.log('API Response:', data);
+
+	// Сохраняем результат в localStorage
+	// localStorage.setItem('popularBooks', JSON.stringify(data.items || []));
+
 	return data.items || [];
 });
 
@@ -33,6 +44,7 @@ const booksListReducer = createSlice({
 	reducers: {
 		setQuery(state, action) {
 			state.query = action.payload;
+
 			state.books = [];
 			state.page = 0;
 		},

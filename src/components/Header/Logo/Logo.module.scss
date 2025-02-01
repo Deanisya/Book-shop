@@ -1,0 +1,22 @@
+.linkLogo {
+	text-decoration: none;
+	.logo {
+		font-weight: 400;
+		font-size: 35px;
+		line-height: 116%;
+		color: #000;
+		text-transform: uppercase;
+
+		span {
+			font-family: 'Allerta Stencil', sans-serif;
+			display: inline-block;
+		}
+
+		.first::first-letter {
+			color: #a18a68;
+		}
+		.second::first-letter {
+			color: #a18a68;
+		}
+	}
+}

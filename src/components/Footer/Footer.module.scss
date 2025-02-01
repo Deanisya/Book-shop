@@ -1,0 +1,60 @@
+@import '../../styles/variables.scss';
+.footer {
+	border-top: 1px solid $light-colors-gray-light;
+	height: 159px;
+	padding-top: 55px;
+	.footerLinksAndForm {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 50px;
+		.footerLinks {
+			display: flex;
+			gap: 41px;
+			.footerLink {
+				text-decoration: none;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 169%;
+				color: $light-colors-dark-gray-light;
+			}
+		}
+		.footerForm {
+			display: flex;
+			height: 25px;
+			width: 396px;
+			border-bottom: 1px solid $light-colors-black-light;
+			.footerFormInput {
+				width: 100%;
+				border: none;
+				outline: none;
+				padding-bottom: 13px;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 169%;
+				color: $light-colors-dark-gray-light;
+				&::placeholder {
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 169%;
+					color: $light-colors-dark-gray-light;
+				}
+			}
+			.footerFormBtn {
+				border: none;
+				background-color: transparent;
+				padding-bottom: 13px;
+			}
+		}
+	}
+	.footerPolicyAndMedia {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 55px;
+		.footerPolicy {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-black-light;
+		}
+	}
+}

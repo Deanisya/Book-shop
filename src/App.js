@@ -1,42 +1,39 @@
 import './App.css';
-
+import Account from './/components/Account/Account';
+import Password from './components/Account/Password/Password';
+import BookDetails from './components/BookDetails/BookDetails';
+import Contacts from './components/Contacts/Contacts';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import PopularBooks from './components/PopularBooks/PopularBooks';
-// import Books from './components/Books/Books';
-import SectionContainer from './components/SectionContainer/SectionContainer';
+import NotFound from './components/NotFound/NotFound';
+import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
+import Container from './components/common/Container/Container';
+
+import PopularBooks from './components//PopularBooks/PopularBooks';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ShopBooksGrid from './components/ShopBooksGrid/ShopBooksGrid';
-import UncontrolledExample from './components/bootstrapComponents/UncontrolledExample';
 
 function App() {
 	return (
-		<>
-			<SectionContainer>
+		<Router>
+			<Container>
 				<Header />
-				{/* <UncontrolledExample /> */}
-				{/* <Books /> */}
-				{/* <PopularBooks /> */}
-				<ShopBooksGrid />
-			</SectionContainer>
-		</>
+				<Routes>
+					<Route path='/' element={<PopularBooks />} />
+					<Route path='shop' element={<ShopBooksGrid />} />
+					<Route path='blog' element={<BookDetails />} />
+					<Route path='contacts' element={<Contacts />} />
+					<Route path='cart' element={<BookDetails />} />
+					<Route path='wishlist' element={<BookDetails />} />
+					<Route path='account' element={<Account />} />
+					<Route path='password' element={<Password />} />
+					<Route path='privacy' element={<PrivacyPolicy />} />
+					<Route path='*' element={<NotFound />} />
+				</Routes>
+				<Footer />
+			</Container>
+		</Router>
 	);
 }
 
 export default App;
-
-{
-	/* <Routes>
-	<Route path='/' element={<Home />} />
-	<Route path='/about' element={<About />} />
-	<Route path='/project/*' element={<Projects />}>
-		<Route path='toDoList' element={<ToDoListRedux title='To Do List' />} />
-		<Route path='animatedSocialLink' element={<AnimatedSocialLink />} />
-		<Route path='slider' element={<Slider />} />
-		<Route path='draggedList' element={<DragDropList />} />
-		<Route path='draggedListBlocks' element={<DragDropBlocks />} />
-		<Route path='draggedListThreeBlocks' element={<DragDropBlocksOnRedux />} />
-	</Route>
-	<Route path='/' element={<FooterPortfolio />} />
-</Routes>; */
-}
-
-// @import '../../styles/variables.scss';

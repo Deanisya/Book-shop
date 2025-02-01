@@ -1,0 +1,12 @@
+@import '../../../styles/variables.scss';
+.formBtn {
+	border-radius: 4px;
+	width: 500px;
+	height: 53px;
+	background: $light-colors-black-light;
+	font-weight: 700;
+	font-size: 16px;
+	color: $light-colors-white-light;
+	border: none;
+	cursor: pointer;
+}

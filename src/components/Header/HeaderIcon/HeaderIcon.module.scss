@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+.HeaderBlockIcon {
+	height: 21px;
+	display: flex;
+	gap: 24px;
+	border-left: 1px solid $light-colors-dark-gray-light;
+	padding-left: 48px;
+	margin: auto 0;
+	.HeaderIcon {
+		display: flex;
+		align-items: center;
+	}
+}

@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+.input {
+	width: 100%;
+	height: 39px;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid $light-colors-gray-light;
+	&::placeholder {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 169%;
+		color: $light-colors-dark-gray-light;
+	}
+}
+.inputCheckbox {
+	width: auto;
+}

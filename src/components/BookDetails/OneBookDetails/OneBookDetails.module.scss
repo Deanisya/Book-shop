@@ -1,0 +1,106 @@
+@import '../../../styles/variables.scss';
+.oneBookDetails {
+	margin-bottom: 99px;
+	.bookHeader {
+		font-weight: 400;
+		font-size: 26px;
+		line-height: 135%;
+		color: $light-colors-black-light;
+		margin-bottom: 23px;
+	}
+	.bookPrice {
+		display: inline-block;
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 130%;
+		text-transform: capitalize;
+		color: $light-colors-accent-light;
+		margin-bottom: 64px;
+	}
+	.bookRaiting {
+		display: flex;
+		align-items: center;
+		margin-bottom: 22px;
+		.bookRaitingStars {
+			display: flex;
+			gap: 10px;
+			margin-right: 24px;
+		}
+		.bookRaitingDescription {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-dark-gray-light;
+		}
+	}
+	.bookDescription {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 169%;
+		color: $light-colors-dark-gray-light;
+		margin-bottom: 48px;
+	}
+	.blockAddBookToCart {
+		display: flex;
+		margin-bottom: 80px;
+		.counterAddBookToCart {
+			background: $light-colors-light-gray-light;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 24px;
+			border-radius: 4px;
+			width: 102px;
+			height: 53px;
+			margin-right: 23px;
+			.counterMinus,
+			.count,
+			.counterPlus {
+				background-color: transparent;
+				border: none;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 169%;
+				color: $light-colors-dark-gray-light;
+				cursor: pointer;
+			}
+			.count {
+				width: 5px;
+				cursor: text;
+			}
+		}
+		.btnAddBookToCart {
+			border: 1px solid $light-colors-black-light;
+			border-radius: 4px;
+			width: 30%;
+			height: 53px;
+			background-color: transparent;
+			cursor: pointer;
+		}
+	}
+	.blockWishlistAndMedia {
+		display: flex;
+		margin-bottom: 37px;
+		.headerIconWishlist {
+			padding-right: 40px;
+			border-right: 1px solid $light-colors-gray-light;
+		}
+	}
+	.blockSku {
+		display: flex;
+		gap: 16px;
+		margin-bottom: 6px;
+		.sku {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-black-light;
+		}
+		.blockSkuValue {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-dark-gray-light;
+		}
+	}
+}

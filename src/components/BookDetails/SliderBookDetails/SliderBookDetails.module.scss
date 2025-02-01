@@ -1,0 +1,39 @@
+.sliderContainer {
+	display: flex;
+	max-width: 600px;
+	gap: 16px;
+	.swiper-slide.swiper-slide-active {
+		width: 600px;
+		margin: 0;
+	}
+	.smallImages {
+		display: flex;
+		gap: 40px;
+		width: 20%;
+		height: 540px;
+		.swiperSmallImages {
+			height: 100%;
+
+			.smallImage {
+				width: 120px;
+				height: 120px;
+				cursor: pointer;
+				border-radius: 8px;
+			}
+		}
+	}
+	.largeImageContainer {
+		width: 100%;
+		.largeImage {
+			width: 100%;
+			height: 540px;
+			object-fit: cover;
+			border-radius: 10px;
+			opacity: 0;
+			transition: opacity 1s ease-in-out;
+			&.fadeIn {
+				opacity: 1;
+			}
+		}
+	}
+}

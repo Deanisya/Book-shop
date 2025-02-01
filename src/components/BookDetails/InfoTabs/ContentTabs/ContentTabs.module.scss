@@ -1,0 +1,145 @@
+@import '../../../../styles/variables.scss';
+.tabsContent {
+	padding-top: 39px;
+	display: grid;
+	transition: all 0.3s ease-in-out;
+	.tabDescription {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 169%;
+		color: $light-colors-dark-gray-light;
+	}
+	.tabInfo {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+		.tabInfoItem {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-black-light;
+			.tabInfoValue {
+				color: $light-colors-dark-gray-light;
+			}
+		}
+	}
+	.blockReviews {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 87px;
+		.allReviews {
+			.headerReviews {
+				font-weight: 400;
+				font-size: 20px;
+				line-height: 130%;
+				color: $light-colors-black-light;
+				margin-bottom: 46px;
+			}
+			.review {
+				padding-bottom: 39px;
+				border-bottom: 1px solid $light-colors-gray-light;
+				&:last-child {
+					border: none;
+				}
+				.headerReview {
+					margin-top: 24px;
+					display: flex;
+					align-items: center;
+					gap: 16px;
+					font-weight: 400;
+					font-size: 20px;
+					line-height: 130%;
+					color: $light-colors-black-light;
+					margin-bottom: 16px;
+					.dateReview {
+						font-weight: 400;
+						font-size: 14px;
+						line-height: 157%;
+						color: $light-colors-dark-gray-light;
+					}
+				}
+				.ratingReview {
+					display: flex;
+					gap: 10px;
+					margin-bottom: 24px;
+				}
+				.descriptionReview {
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 169%;
+					color: $light-colors-dark-gray-light;
+				}
+			}
+		}
+		.addReviews {
+			.titleAddReviews {
+				font-weight: 400;
+				font-size: 20px;
+				line-height: 130%;
+				color: $light-colors-black-light;
+				margin-bottom: 11px;
+			}
+			.subtitleAddReviews {
+				font-weight: 400;
+				font-size: 13px;
+				line-height: 231%;
+				text-transform: capitalize;
+				color: $light-colors-dark-gray-light;
+				margin-bottom: 46px;
+			}
+			.addReviewsForm {
+				display: flex;
+				flex-direction: column;
+				.addReviewsFormInput {
+					border: none;
+					outline: none;
+					border-bottom: 1px solid $light-colors-gray-light;
+					height: 35px;
+					margin-bottom: 46px;
+				}
+				.addReviewsCheckbox {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					margin-bottom: 46px;
+					.addReviewsCheckboxInput {
+						border: 1px solid $light-colors-black-light;
+						width: 18px;
+						height: 18px;
+					}
+					.addReviewsCheckboxInfo {
+						font-weight: 400;
+						font-size: 12px;
+						color: $light-colors-dark-gray-light;
+					}
+				}
+				.addReviewsRating {
+					margin-bottom: 48px;
+					.addReviewsRatingTitle {
+						font-weight: 400;
+						font-size: 14px;
+						line-height: 157%;
+						color: $light-colors-dark-gray-light;
+						margin-bottom: 13px;
+					}
+					.addReviewsRatingStars {
+						display: flex;
+						gap: 10px;
+					}
+				}
+				.addReviewsBtn {
+					border: 1px solid $light-colors-white-light;
+					border-radius: 4px;
+					width: 123px;
+					height: 53px;
+					font-weight: 700;
+					font-size: 16px;
+					color: $light-colors-white-light;
+					background: $light-colors-black-light;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}

@@ -1,26 +1,81 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import styles from './NavBar.module.scss';
-import IconsPanel from '../../IconsPanel/IconsPanel';
+import React, { useState } from 'react';
+import s from './Navbar.module.scss';
+import clsx from 'clsx';
+import HeaderIcon from '../HeaderIcon/HeaderIcon';
+import { Link } from 'react-router-dom';
 
-function NavBar() {
-	const links = useSelector(state => state.staticData.links);
-	console.log(links);
+export default function Navbar() {
+	const [activeIndex, setActiveIndex] = useState(null);
+
+	const handleClick = index => {
+		setActiveIndex(index === activeIndex ? null : index); // Переключаем активность
+	};
 
 	return (
-		<div className={styles.blockNavigation}>
-			<ul className={styles.listMenu}>
-				{links.map(link => (
-					<li className={styles.linkList} key={link.id}>
-						<a className={styles.linkTitle} href='#'>
-							{link.title}
-						</a>
-					</li>
-				))}
+		<nav className={s.nav}>
+			<ul className={s.navList}>
+				<li
+					className={clsx(s.navItem, {
+						[s.navItemActive]: activeIndex === 0,
+					})}
+				>
+					<Link
+						onClick={() => handleClick(0)}
+						to='/'
+						className={clsx(s.navLink, {
+							[s.navLinkActive]: activeIndex === 0,
+						})}
+					>
+						Home
+					</Link>
+				</li>
+				<li
+					className={clsx(s.navItem, {
+						[s.navItemActive]: activeIndex === 1,
+					})}
+				>
+					<Link
+						onClick={() => handleClick(1)}
+						to='/shop'
+						className={clsx(s.navLink, {
+							[s.navLinkActive]: activeIndex === 1,
+						})}
+					>
+						Shop
+					</Link>
+				</li>
+				<li
+					className={clsx(s.navItem, {
+						[s.navItemActive]: activeIndex === 2,
+					})}
+				>
+					<Link
+						onClick={() => handleClick(2)}
+						to='/blog'
+						className={clsx(s.navLink, {
+							[s.navLinkActive]: activeIndex === 2,
+						})}
+					>
+						Blog
+					</Link>
+				</li>
+				<li
+					className={clsx(s.navItem, {
+						[s.navItemActive]: activeIndex === 3,
+					})}
+				>
+					<Link
+						onClick={() => handleClick(3)}
+						to='/contacts'
+						className={clsx(s.navLink, {
+							[s.navLinkActive]: activeIndex === 3,
+						})}
+					>
+						Contacts
+					</Link>
+				</li>
 			</ul>
-			<IconsPanel />
-		</div>
+			<HeaderIcon />
+		</nav>
 	);
 }
-
-export default NavBar;

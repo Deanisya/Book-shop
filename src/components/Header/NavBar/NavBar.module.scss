@@ -1,22 +1,37 @@
 @import '../../../styles/variables.scss';
-.blockNavigation {
+.nav {
 	display: flex;
-	.listMenu {
+	margin-right: 48px;
+	height: 100%;
+	.navList {
 		display: flex;
-		gap: 40px;
 		align-items: center;
-		justify-content: center;
-		padding-right: 2rem;
+		gap: 64px;
 		margin: 0;
-		.linkList {
-			.linkTitle {
-				font-weight: 400;
-				font-size: 16px;
-				line-height: 169%;
-				color: $light-colors-black-light;
-				font-family: $font-family;
-				text-decoration: none;
-			}
+		margin-right: 48px;
+		height: 100%;
+		.navItem {
+			display: flex;
+			align-items: center;
+			list-style: none;
+			height: 100%;
+		}
+		.navItemActive {
+			border-bottom: 1px solid $light-colors-black-light;
+		}
+		.navLink {
+			text-decoration: none;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-dark-gray-light;
+		}
+		.navLinkActive {
+			color: $light-colors-black-light;
+		}
+
+		.disabled {
+			opacity: 0.5;
 		}
 	}
 }

@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+.privacy {
+	margin: 96px 0;
+	gap: 39px;
+	display: flex;
+	justify-content: center;
+	.privacyWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 39px;
+		width: 60%;
+
+		.blockDescription {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			li {
+				margin-left: 30px;
+			}
+			.privacySubTitle {
+				font-weight: 400;
+				font-size: 26px;
+				line-height: 96%;
+				text-transform: capitalize;
+				color: $light-colors-black-light;
+			}
+			.privacyDescription {
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 169%;
+				color: $light-colors-black-light;
+			}
+		}
+	}
+	// .privacyWrapper > :nth-child(1) {
+	// 	margin-bottom: 39px;
+	// }
+}

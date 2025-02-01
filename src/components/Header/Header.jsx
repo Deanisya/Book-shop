@@ -1,16 +1,15 @@
 import React from 'react';
-import NavBar from './NavBar/NavBar';
-import styles from './Header.module.scss';
+import Logo from './Logo/Logo';
+import Navbar from './Navbar/Navbar';
+import s from './Header.module.scss';
 
-function Header() {
+export default function Header() {
 	return (
-		<header className={styles.header}>
-			<p className={styles.titleLogo}>shoppe</p>
-			<nav>
-				<NavBar />
-			</nav>
+		<header className={s.header}>
+			<div className={s.headerNavigation}>
+				<Logo />
+				<Navbar />
+			</div>
 		</header>
 	);
 }
-
-export default Header;

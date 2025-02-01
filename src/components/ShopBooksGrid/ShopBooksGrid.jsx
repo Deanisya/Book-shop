@@ -5,17 +5,17 @@ import ShoppingBooks from './ShoppingBooks/ShoppingBooks';
 import DropdownFilter from '../DropdownFilter/DropdownFilter';
 
 function ShopBooksGrid() {
-	const [searchQuery, setSearchQuery] = useState(''); // Состояние для поискового запроса
+	// const [searchQuery, setSearchQuery] = useState(''); // Состояние для поискового запроса
 
 	return (
 		<div className={styles.gridContainer}>
 			<div>
-				<SearchBar setSearchQuery={setSearchQuery} />
+				<SearchBar />
 				<DropdownFilter />
 			</div>
 
 			<div>
-				<ShoppingBooks query={searchQuery} />
+				<ShoppingBooks />
 			</div>
 		</div>
 	);

@@ -1,16 +1,19 @@
 import styles from './CatalogPopularBooks.module.scss';
+import photo from '../../../img/book1.png';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularBooks } from '../../../store/reducers/booksListReducer';
-import photo from '../../../img/book1.png';
 
 function CatalogPopularBooks() {
 	const dispatch = useDispatch();
 	const { popularBooks } = useSelector(state => state.booksList);
 
 	useEffect(() => {
-		dispatch(fetchPopularBooks());
-	}, [dispatch]);
+		if (popularBooks.length === 0) {
+			console.log('Fetching books...');
+			dispatch(fetchPopularBooks());
+		}
+	}, [dispatch, popularBooks.length]);
 
 	function shortenTitle(title, maxLength) {
 		if (title.length > maxLength) {
@@ -29,7 +32,10 @@ function CatalogPopularBooks() {
 								<button className={styles.addBookToCart}>Add cart</button>
 							</div>
 						) : (
-							<img src={photo}></img>
+							<div className={styles.backgroundImageBook}>
+								<img src={photo}></img>
+								<button className={styles.addBookToCart}>Add cart</button>
+							</div>
 						)}
 
 						<h2 className={styles.titleBook} title={book.volumeInfo.title}>
