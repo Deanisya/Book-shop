@@ -2,6 +2,7 @@
 .bookDetailsContainer {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	margin-top: 128px;
-	column-gap: 62px;
+	// overflow: hidden;
+	// margin-top: 128px;
+	gap: 15px;
 }

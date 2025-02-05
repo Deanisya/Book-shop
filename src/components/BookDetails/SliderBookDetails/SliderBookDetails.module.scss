@@ -1,32 +1,36 @@
 .sliderContainer {
 	display: flex;
-	max-width: 600px;
+	max-width: 550px;
+	height: 540px;
 	gap: 16px;
 	.swiper-slide.swiper-slide-active {
-		width: 600px;
+		max-width: 100%;
 		margin: 0;
 	}
+
 	.smallImages {
 		display: flex;
-		gap: 40px;
-		width: 20%;
+		// gap: 40px;
+		// width: 20%;
 		height: 540px;
 		.swiperSmallImages {
 			height: 100%;
 
 			.smallImage {
 				width: 120px;
-				height: 120px;
+				height: 150px;
 				cursor: pointer;
 				border-radius: 8px;
 			}
 		}
 	}
 	.largeImageContainer {
-		width: 100%;
+		max-width: 75%;
+		background: grey;
+
 		.largeImage {
-			width: 100%;
-			height: 540px;
+			max-width: 300px;
+			height: 240px;
 			object-fit: cover;
 			border-radius: 10px;
 			opacity: 0;
@@ -36,4 +40,7 @@
 			}
 		}
 	}
+}
+.swiper .swiper-initialized .swiper-horizontal .swiper-backface-hidden {
+	height: 100%;
 }

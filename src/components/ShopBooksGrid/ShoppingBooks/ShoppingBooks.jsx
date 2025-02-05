@@ -4,8 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../../store/reducers/booksListReducer';
 import styles from './ShoppingBooks.module.scss';
 import photo from '../../../img/book1.png';
+import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function ShoppingBooks() {
+	// const navigate = useNavigate();
+	// const handleBookClick = id => {
+	// 	console.log('Navigating to book with id:', id); // Для отладки
+	// 	navigate(`/book/${id}`);
+	// };
+
 	const dispatch = useDispatch();
 	const { books, loading, error, query } = useSelector(state => state.booksList);
 
@@ -50,14 +58,17 @@ function ShoppingBooks() {
 		<ul className={styles.listPopularBooks}>
 			{books.map(book => (
 				<li className={styles.popularBook} key={book.id}>
-					{book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? (
-						<div className={styles.backgroundImageBook}>
+					<div className={styles.backgroundImageBook}>
+						{book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? (
 							<img className={styles.imageBook} src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title || 'Без названия'} />
-							<button className={styles.addBookToCart}>Add cart</button>
-						</div>
-					) : (
-						<img src={photo}></img>
-					)}
+						) : (
+							<img src={photo} alt='Изображение книги' />
+						)}
+						<button className={styles.addBookToCart}>Add cart</button>
+						<Link to={`/book/${book.id}`} className={styles.seeDetails}>
+							See details
+						</Link>
+					</div>
 
 					<h2 className={styles.titleBook} title={book.volumeInfo.title}>
 						{shortenTitle(book.volumeInfo.title || 'Без названия', 20)}

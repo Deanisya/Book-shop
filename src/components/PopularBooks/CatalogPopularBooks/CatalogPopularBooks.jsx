@@ -3,8 +3,15 @@ import photo from '../../../img/book1.png';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularBooks } from '../../../store/reducers/booksListReducer';
+import { Link, useNavigate } from 'react-router-dom';
 
 function CatalogPopularBooks() {
+	// const navigate = useNavigate();
+	// const handleBookClick = id => {
+	// 	console.log('Navigating to book with id:', id); // Для проверки какой id нам пришел
+	// 	navigate(`/book/${id}`);
+	// }; ------ можно навесить клик на ссылку вместо использования Link (2 способ решения) ------
+
 	const dispatch = useDispatch();
 	const { popularBooks } = useSelector(state => state.booksList);
 
@@ -26,17 +33,17 @@ function CatalogPopularBooks() {
 			{popularBooks.length > 0 ? (
 				popularBooks.map(book => (
 					<li className={styles.popularBook} key={book.id}>
-						{book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? (
-							<div className={styles.backgroundImageBook}>
+						<div className={styles.backgroundImageBook}>
+							{book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? (
 								<img className={styles.imageBook} src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title || 'Без названия'} />
-								<button className={styles.addBookToCart}>Add cart</button>
-							</div>
-						) : (
-							<div className={styles.backgroundImageBook}>
-								<img src={photo}></img>
-								<button className={styles.addBookToCart}>Add cart</button>
-							</div>
-						)}
+							) : (
+								<img src={photo} alt='Изображение книги' />
+							)}
+							<button className={styles.addBookToCart}>Add cart</button>
+							<Link to={`/book/${book.id}`} className={styles.seeDetails}>
+								See details
+							</Link>
+						</div>
 
 						<h2 className={styles.titleBook} title={book.volumeInfo.title}>
 							{shortenTitle(book.volumeInfo.title || 'Без названия', 30)}

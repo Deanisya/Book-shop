@@ -3,6 +3,7 @@
 .allProducts {
 	display: flex;
 	justify-content: flex-end;
+	margin-bottom: 2rem;
 	.linkAllProducts {
 		border: 1px solid $dark-colors-light-gray-dark;
 		background: transparent;
