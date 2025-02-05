@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
-import styles from './SearchBar.module.scss';
+import s from './SearchBar.module.scss';
 import { fetchBooks, setQuery } from '../../../store/reducers/booksListReducer';
 
 const SearchBar = () => {
@@ -10,7 +10,7 @@ const SearchBar = () => {
 
 	const debouncedFetchBooks = useCallback(
 		debounce(searchQuery => {
-			if (searchQuery.trim().length > 0) {
+			if (searchQuery.trim().length > 1) {
 				dispatch(fetchBooks({ searchQuery, startIndex: 0 }));
 			}
 		}, 500),
@@ -19,7 +19,7 @@ const SearchBar = () => {
 
 	// Слушаем изменения query и вызываем debouncedFetchBooks
 	useEffect(() => {
-		if (query.trim().length > 0) {
+		if (query.trim().length > 1) {
 			debouncedFetchBooks(query);
 		}
 		return () => {
@@ -29,15 +29,15 @@ const SearchBar = () => {
 
 	// При клике на кнопку, выполняем поиск с текущим запросом
 	const handleSearch = () => {
-		if (query.trim().length > 0) {
+		if (query.trim().length > 1) {
 			dispatch(fetchBooks({ searchQuery: query, startIndex: 0 }));
 		}
 	};
 
 	return (
-		<div className={styles.searchBar}>
-			<input type='text' value={query} onChange={e => dispatch(setQuery(e.target.value))} placeholder='Search book...' />
-			<button onClick={handleSearch}>
+		<div className={s.searchBar}>
+			<input className={s.searchInput} type='text' value={query} onChange={e => dispatch(setQuery(e.target.value))} placeholder='Search book...' />
+			{/* <button className={s.searchButton} onClick={handleSearch}>
 				<svg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'>
 					<path
 						fillRule='evenodd'
@@ -46,7 +46,7 @@ const SearchBar = () => {
 						fill='black'
 					/>
 				</svg>
-			</button>
+			</button> */}
 		</div>
 	);
 };

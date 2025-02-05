@@ -4,10 +4,16 @@
 	display: flex;
 	justify-content: space-between;
 	padding-bottom: 10px;
-	input,
-	button {
+	.searchInput,
+	.searchButton {
 		border: none;
 		background: transparent;
+	}
+	.searchInput {
+		width: 100%;
+		&:focus {
+			outline: none;
+		}
 	}
 
 	// width: 261px;
