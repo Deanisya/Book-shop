@@ -1,20 +1,19 @@
 @import '../../../styles/variables.scss';
 .nav {
 	display: flex;
-	margin-right: 48px;
-	height: 100%;
+	gap: 20px;
+
 	.navList {
 		display: flex;
 		align-items: center;
 		gap: 64px;
-		margin: 0;
-		margin-right: 48px;
-		height: 100%;
+		margin-bottom: 0;
+		padding: 0;
+
 		.navItem {
 			display: flex;
 			align-items: center;
 			list-style: none;
-			height: 100%;
 		}
 		.navItemActive {
 			border-bottom: 1px solid $light-colors-black-light;

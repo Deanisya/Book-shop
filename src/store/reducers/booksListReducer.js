@@ -3,11 +3,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const API_KEY = 'AIzaSyAmAcNt2YEJaAyzDMRxBsDxafm-3tC3bY4';
 const initialState = {
 	popularBooks: [],
+	filterPopularBooks: [],
 	books: [],
 	bookDetails: null,
 	query: '',
 	loading: false,
 	error: null,
+	filterByPrice: false,
 };
 
 // Асинхронное действие для получения популярных книг
@@ -34,7 +36,7 @@ export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', asy
 
 // 🔹 Асинхронный экшен для поиска книг
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, startIndex }) => {
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&startIndex=${startIndex}&maxResults=8&key=${API_KEY}`);
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&startIndex=${startIndex}&maxResults=12&key=${API_KEY}`);
 	const data = await response.json();
 	return data.items || [];
 });
@@ -42,6 +44,8 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQu
 export const fetchDetailsBooks = createAsyncThunk('bookDetails/fetchBooks', async ({ id }) => {
 	const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}?key=${API_KEY}`);
 	const data = await response.json();
+	console.log(data);
+
 	return data;
 });
 
@@ -56,6 +60,15 @@ const booksListReducer = createSlice({
 		},
 		clearBookDetails(state) {
 			state.bookDetails = null;
+		},
+		toggleFilterByPrice(state) {
+			state.filterByPrice = !state.filterByPrice;
+
+			if (state.books.length > 0) {
+				state.books = state.books.filter(book => book?.saleInfo?.listPrice?.amount);
+			} else {
+				state.filterPopularBooks = state.filterPopularBooks.filter(book => book?.saleInfo?.listPrice?.amount);
+			}
 		},
 
 		// incrementPage(state) {
@@ -72,6 +85,7 @@ const booksListReducer = createSlice({
 			.addCase(fetchPopularBooks.fulfilled, (state, action) => {
 				state.loading = false;
 				state.popularBooks = action.payload;
+				state.filterPopularBooks = action.payload;
 			})
 			.addCase(fetchPopularBooks.rejected, (state, action) => {
 				state.loading = false;
@@ -106,5 +120,5 @@ const booksListReducer = createSlice({
 	},
 });
 
-export const { setQuery, incrementPage, clearBookDetails } = booksListReducer.actions;
+export const { setQuery, incrementPage, clearBookDetails, toggleFilterByPrice } = booksListReducer.actions;
 export default booksListReducer.reducer;

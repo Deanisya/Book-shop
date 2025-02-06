@@ -1,12 +1,13 @@
 @import '../../styles/variables.scss';
+
 .footer {
+	margin: auto 0 0;
 	border-top: 1px solid $light-colors-gray-light;
-	height: 159px;
-	padding-top: 55px;
+	padding: 55px 0;
 	.footerLinksAndForm {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 50px;
+		padding-bottom: 50px;
 		.footerLinks {
 			display: flex;
 			gap: 41px;
@@ -49,7 +50,6 @@
 	.footerPolicyAndMedia {
 		display: flex;
 		justify-content: space-between;
-		padding-bottom: 55px;
 		.footerPolicy {
 			font-weight: 400;
 			font-size: 16px;

@@ -19,7 +19,7 @@ const Contacts = () => {
 					<Input type='text' placeholder='Subject' />
 				</label>
 				<Input type='text' placeholder='Message' />
-				<ButtonForm title='SEND' />
+				<ButtonForm width='60%' title='SEND' />
 			</form>
 		</div>
 	);

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import s from './OneBookDetails.module.scss';
 import BlockMedia from '../../common/BlockMedia/BlockMedia';
+import Counter from '../../common/Counter/Counter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { clearBookDetails, fetchDetailsBooks } from '../../../store/reducers/booksListReducer';
 
 const OneBookDetails = () => {
-	const [count, setCount] = useState(1);
-	const handleDecrement = () => setCount(prev => prev - 1);
-	const handleIncrement = () => setCount(prev => prev + 1);
-
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	const { bookDetails, error, loading } = useSelector(state => state.booksList); // books?
@@ -126,15 +123,7 @@ const OneBookDetails = () => {
 
 			{listPrice ? (
 				<div className={s.blockAddBookToCart}>
-					<div className={s.counterAddBookToCart}>
-						<button className={s.counterMinus} onClick={handleDecrement}>
-							-
-						</button>
-						<span className={s.count}>{count}</span>
-						<button className={s.counterPlus} onClick={handleIncrement}>
-							+
-						</button>
-					</div>
+					<Counter />
 					<button className={s.btnAddBookToCart}>Add to Cart</button>
 				</div>
 			) : (
@@ -173,10 +162,3 @@ const OneBookDetails = () => {
 };
 
 export default OneBookDetails;
-// <div>
-// 	<h1>{volumeInfo.title}</h1>
-// 	<img src={volumeInfo.imageLinks?.thumbnail} alt={volumeInfo.title} />
-// 	<p>{volumeInfo.description}</p>
-// 	<p>Автор(ы): {volumeInfo.authors?.join(', ')}</p>
-// 	<p>Дата публикации: {volumeInfo.publishedDate}</p>
-// </div>

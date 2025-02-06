@@ -1,26 +1,21 @@
-import styles from './CatalogPopularBooks.module.scss';
+import React from 'react';
+import styles from './RenderBooks.module.scss';
 import photo from '../../../img/book1.png';
-import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPopularBooks } from '../../../store/reducers/booksListReducer';
-import { Link, useNavigate } from 'react-router-dom';
+import { addItem } from '../../../store/reducers/cartReducer';
 
-function CatalogPopularBooks() {
-	// const navigate = useNavigate();
-	// const handleBookClick = id => {
-	// 	console.log('Navigating to book with id:', id); // Для проверки какой id нам пришел
-	// 	navigate(`/book/${id}`);
-	// }; ------ можно навесить клик на ссылку вместо использования Link (2 способ решения) ------
-
+function RenderBooks({ books }) {
+	const { loading, error } = useSelector(state => state.booksList);
 	const dispatch = useDispatch();
-	const { popularBooks } = useSelector(state => state.booksList);
-
-	useEffect(() => {
-		if (popularBooks.length === 0) {
-			console.log('Fetching books...');
-			dispatch(fetchPopularBooks());
-		}
-	}, [dispatch, popularBooks.length]);
+	// Если идет загрузка
+	if (loading) {
+		return <p>Загрузка...</p>;
+	}
+	// Если ошибка
+	if (error) {
+		return <p>Ошибка загрузки: {error}</p>;
+	}
 
 	function shortenTitle(title, maxLength) {
 		if (title.length > maxLength) {
@@ -28,18 +23,25 @@ function CatalogPopularBooks() {
 		}
 		return title;
 	} // функция чтобы укоротить слишком длинный заголовок книги
+
+	const handleAddInCart = book => {
+		dispatch(addItem(book));
+	};
+
 	return (
 		<ul className={styles.listPopularBooks}>
-			{popularBooks.length > 0 ? (
-				popularBooks.map(book => (
+			{books.length > 0 ? (
+				books.map(book => (
 					<li className={styles.popularBook} key={book.id}>
 						<div className={styles.backgroundImageBook}>
 							{book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? (
 								<img className={styles.imageBook} src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title || 'Без названия'} />
 							) : (
-								<img src={photo} alt='Изображение книги' />
+								<img className={styles.imageBook} src={photo} alt='Изображение книги' />
 							)}
-							<button className={styles.addBookToCart}>Add cart</button>
+							<button onClick={() => handleAddInCart(book)} className={styles.addBookToCart}>
+								Add cart
+							</button>
 							<Link to={`/book/${book.id}`} className={styles.seeDetails}>
 								See details
 							</Link>
@@ -59,4 +61,4 @@ function CatalogPopularBooks() {
 	);
 }
 
-export default CatalogPopularBooks;
+export default RenderBooks;

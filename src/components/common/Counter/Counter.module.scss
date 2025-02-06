@@ -1,0 +1,27 @@
+@import '../../../styles/variables.scss';
+.counterAddBookToCart {
+	background: $light-colors-light-gray-light;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+	border-radius: 4px;
+	width: 102px;
+	height: 53px;
+	margin-right: 23px;
+	.counterMinus,
+	.count,
+	.counterPlus {
+		background-color: transparent;
+		border: none;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 169%;
+		color: $light-colors-dark-gray-light;
+		cursor: pointer;
+	}
+	.count {
+		width: 5px;
+		cursor: text;
+	}
+}

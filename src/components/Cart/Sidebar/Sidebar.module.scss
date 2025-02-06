@@ -1,0 +1,84 @@
+@import '../../../styles/variables.scss';
+.sidebar {
+	position: fixed;
+	top: 0;
+	right: -400px;
+	width: 400px;
+	height: 100vh;
+	background: $light-colors-white-light;
+	transition: right 0.3s ease;
+	z-index: 1000;
+	border-left: 1px solid $light-colors-gray-light;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.sidebarCartHeader {
+		height: 7vh;
+		margin-top: 32px;
+		margin-bottom: 3px;
+		padding: 0 36px;
+		.cartTitle {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-black-light;
+			margin-bottom: 17px;
+		}
+		.cartSubTitle {
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 167%;
+			color: $light-colors-dark-gray-light;
+		}
+	}
+	.cartItems {
+		display: flex;
+		flex-direction: column;
+		gap: 22px;
+		overflow-y: auto;
+		height: 78vh;
+		padding: 0 36px;
+		padding-bottom: 37px;
+	}
+
+	.sidebarCartFooter {
+		border-top: 1px solid $light-colors-gray-light;
+		height: 15vh;
+		padding-top: 21px;
+		padding-left: 36px;
+		padding-right: 36px;
+		padding-bottom: 27px;
+		.sidebarCartFooterInfo {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 21px;
+			.sidebarCartFooterTitle {
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 169%;
+				color: $light-colors-black-light;
+			}
+			.sidebarCartFooterPrice {
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 169%;
+				color: $light-colors-black-light;
+			}
+		}
+		.sidebarCartFooterBtn {
+			font-weight: 700;
+			font-size: 16px;
+			color: $light-colors-black-light;
+			background: $light-colors-white-light;
+			border: 1px solid $light-colors-black-light;
+			border-radius: 4px;
+			height: 53px;
+			width: 100%;
+		}
+	}
+}
+
+.open {
+	right: 0;
+}

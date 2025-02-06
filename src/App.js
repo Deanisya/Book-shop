@@ -8,6 +8,10 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import Container from './components/common/Container/Container';
+import Sidebar from './components/Cart/Sidebar/Sidebar';
+import Cart from './components/Cart/Cart';
+import Checkout from './components/Cart/Checkout/Checkout';
+import Order from './components/Cart/Checkout/Order/Order';
 
 import PopularBooks from './components//PopularBooks/PopularBooks';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
@@ -29,14 +33,17 @@ function App() {
 		<Router>
 			<Container>
 				<Header />
+				<Sidebar />
 				<ScrollToTop />
 				<Routes>
 					<Route path='/' element={<PopularBooks />} />
 					<Route path='shop' element={<ShopBooksGrid />} />
 					<Route path='/book/:id' element={<BookDetails />} />
 					<Route path='blog' element={<BookDetails />} />
+					<Route path='cart' element={<Cart />} />
+					<Route path='checkout' element={<Checkout />} />
+					<Route path='order' element={<Order />} />
 					<Route path='contacts' element={<Contacts />} />
-					<Route path='cart' element={<BookDetails />} />
 					<Route path='wishlist' element={<BookDetails />} />
 					<Route path='account' element={<Account />} />
 					<Route path='password' element={<Password />} />

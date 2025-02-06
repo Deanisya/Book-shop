@@ -1,15 +1,13 @@
 @import '../../styles/variables.scss';
 .header {
 	display: flex;
-	height: 107px;
+	position: fixed;
+	width: calc(100% - 200px);
+	z-index: 2;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
 	border-bottom: 1px solid $light-colors-gray-light;
-	margin-bottom: 2rem;
-	.headerNavigation {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: 100%;
-		padding-top: 48px;
-		width: 100%;
-	}
+	background: rgb(250 247 247 / 90%);
+	backdrop-filter: blur(9px);
 }

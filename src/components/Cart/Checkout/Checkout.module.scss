@@ -1,0 +1,135 @@
+@import '../../../styles/variables.scss';
+.checkout {
+	padding-top: 96px;
+	.checkoutLogin {
+		margin-top: 64px;
+		margin-bottom: 24px;
+		.checkoutLoginTitle {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-dark-gray-light;
+		}
+		.checkoutLoginBtn {
+			text-decoration: none;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-black-light;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	.checkoutCoupon {
+		width: 40%;
+		padding: 24px;
+		padding-bottom: 40px;
+		border: 1px solid $light-colors-gray-light;
+		margin-bottom: 48px;
+		.checkoutCouponTitle {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 169%;
+			color: $light-colors-dark-gray-light;
+			margin-bottom: 39px;
+		}
+		.checkoutCouponForm {
+			display: flex;
+			gap: 28px;
+		}
+	}
+	.checkoutOrderDetails {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 88px;
+		margin-bottom: 100px;
+
+		.checkoutDetails {
+			.checkoutDetailsTitle {
+				font-weight: 400;
+				font-size: 26px;
+				line-height: 135%;
+				color: $light-colors-black-light;
+				margin-bottom: 27px;
+			}
+			.checkoutDetailsForm {
+				.checkoutDetailsFormInfo {
+					display: flex;
+					flex-direction: column;
+					gap: 37px;
+					margin-bottom: 36px;
+					.checkoutDetailsFormName {
+						display: flex;
+						gap: 40px;
+					}
+				}
+				.checkoutDetailsFormBlockCheckbox {
+					margin-bottom: 37px;
+					.checkoutDetailsFormCheckbox {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+
+						span {
+							font-weight: 400;
+							font-size: 16px;
+							line-height: 169%;
+							color: $light-colors-black-light;
+						}
+					}
+				}
+			}
+		}
+		.checkoutOrder {
+			.checkoutOrderTitle {
+				font-weight: 400;
+				font-size: 26px;
+				line-height: 135%;
+				color: $light-colors-black-light;
+				margin-bottom: 27px;
+			}
+			.checkoutOrderBlock {
+				display: flex;
+				flex-direction: column;
+				gap: 26px;
+				padding: 39px 59px;
+				padding-bottom: 48px;
+				background: $light-colors-light-gray-light;
+				.checkoutOrderHeader {
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 169%;
+					color: $light-colors-black-light;
+					display: flex;
+					justify-content: space-between;
+					border-bottom: 1px solid $light-colors-gray-light;
+				}
+				.checkoutOrderMiddle {
+					border-bottom: 1px solid $light-colors-gray-light;
+				}
+				.checkoutOrderBlockList {
+					display: flex;
+					justify-content: space-between;
+
+					.checkoutOrderBlockListTitle {
+						font-weight: 400;
+						font-size: 16px;
+						line-height: 169%;
+						color: $light-colors-black-light;
+					}
+					.checkoutOrderBlockListSubTitle {
+						font-weight: 400;
+						font-size: 16px;
+						line-height: 169%;
+						color: $light-colors-dark-gray-light;
+					}
+				}
+				.checkoutOrderBlockRadio {
+					margin-top: 61px;
+					margin-bottom: 45px;
+				}
+			}
+		}
+	}
+}
