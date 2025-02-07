@@ -31,8 +31,8 @@ const ScrollToTop = () => {
 function App() {
 	return (
 		<Router>
+			<Header />
 			<Container>
-				<Header />
 				<Sidebar />
 				<ScrollToTop />
 				<Routes>

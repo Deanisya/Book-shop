@@ -10,7 +10,7 @@ const PopularBooks = () => {
 	const { loading, error } = useSelector(state => state.booksList);
 
 	return (
-		<div>
+		<div style={{ paddingTop: '5rem' }}>
 			<UncontrolledExample />
 			<div className={styles.catalogBooksBlock}>
 				<div className={styles.titleBlock}>

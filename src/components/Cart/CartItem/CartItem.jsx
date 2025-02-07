@@ -1,38 +1,46 @@
 import React, { useState } from 'react';
 import styles from './CartItem.module.scss';
-import { removeItem } from '../../../store/reducers/cartReducer';
-import img01 from '../../../img/Img 01.png';
-import { useDispatch } from 'react-redux';
+import { decrementCount, incrementCount, removeItem } from '../../../store/reducers/cartReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import Counter from '../../common/Counter/Counter';
 
 const CartItem = ({ item, id }) => {
-	// const [count, setCount] = useState(1);
-	// const handleDecrement = () => setCount((prev) => prev - 1);
-	// const handleIncrement = () => setCount((prev) => prev + 1);
-
 	const dispatch = useDispatch();
-
+	// const itemCounter = useSelector(state => state.cart.items[id]); // Получаем текущий товар из Redux
 	const handleRemove = () => {
 		dispatch(removeItem(id));
 	};
+
+	// const handleDecrementCount = () => {
+	// 	dispatch(decrementCount({ id }));
+	// };
+
+	// const handleIncrementCount = () => {
+	// 	dispatch(incrementCount({ id }));
+	// };
+
+	if (!item) return null; // Если товара нет, не рендерим ничего
+
 	return (
 		<div className={styles.cartItem}>
-			<img src={item.img} alt='img_01' />
+			<img width={80} src={item.img} alt='img_01' />
 			<div className={styles.cartItemInfo}>
 				<div className={styles.cartItemMainInfo}>
 					<h3 className={styles.cartItemTitle}>{item.title}</h3>
-					<p className={styles.cartItemSubTitle}>Black / Medium</p>
-					<p className={styles.cartItemPrice}>{item.price}</p>
+					<p className={styles.cartItemSubTitle}>{item.authors}</p>
+					<p className={styles.cartItemPrice}>{item ? item.quantity * item.price : 0} $</p>
 				</div>
 				{/* <div className={styles.cartItemTotalQuantity}>
 					<span className={styles.cartItemTotalQuantityTitle}>QTY:</span>
-					<button className={styles.cartItemTotalQuantityBtnMinusPlus} onClick={handleDecrement}>
+					<button className={styles.cartItemTotalQuantityBtnMinusPlus} onClick={handleDecrementCount}>
 						-
 					</button>
-					<span className={styles.cartItemTotalQuantityCount}>{count}</span>
-					<button className={styles.cartItemTotalQuantityBtnMinusPlus} onClick={handleIncrement}>
+					<span className={styles.cartItemTotalQuantityCount}>{itemCounter.quantity}</span>
+					<button className={styles.cartItemTotalQuantityBtnMinusPlus} onClick={handleIncrementCount}>
 						+
 					</button>
 				</div> */}
+				<Counter id={id} />
 			</div>
 			<button className={styles.cartItemBtn} onClick={handleRemove}>
 				<svg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'>

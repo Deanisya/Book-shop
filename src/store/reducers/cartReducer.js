@@ -13,8 +13,9 @@ const cartSlice = createSlice({
 		addItem(state, action) {
 			const { id, volumeInfo, saleInfo } = action.payload; // book.volumeInfo.imageLinks.thumbnail
 			const title = volumeInfo.title;
-			const price = saleInfo.listPrice.amount;
+			const price = Math.round(saleInfo.listPrice.amount ?? 0);
 			const img = volumeInfo.imageLinks.thumbnail;
+			const authors = volumeInfo.authors;
 
 			// Проверяем, если товар уже есть в корзине
 			if (state.items[id]) {
@@ -24,7 +25,7 @@ const cartSlice = createSlice({
 				state.totalQuantity += 1;
 			} else {
 				// Если товара нет в корзине, добавляем его с количеством 1
-				state.items[id] = { img, title, price, quantity: 1 };
+				state.items[id] = { img, authors, title, price, quantity: 1 };
 				state.totalQuantity += 1;
 			}
 			// Обновляем общую стоимость
@@ -32,7 +33,7 @@ const cartSlice = createSlice({
 		},
 		removeItem(state, action) {
 			const id = action.payload;
-			const itemTotalPrice = state.items[id].price * state.items[id].quantity;
+			const itemTotalPrice = (state.items[id].price ?? 0) * state.items[id].quantity;
 			state.totalQuantity -= state.items[id].quantity;
 			state.totalPrice -= itemTotalPrice;
 			if (state.items[id]) {

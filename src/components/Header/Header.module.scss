@@ -2,11 +2,12 @@
 .header {
 	display: flex;
 	position: fixed;
-	width: calc(100% - 200px);
+	width: 100%;
+	padding: 0 100px;
 	z-index: 2;
 	justify-content: space-between;
 	align-items: center;
-	height: 50px;
+	height: 60px;
 	border-bottom: 1px solid $light-colors-gray-light;
 	background: rgb(250 247 247 / 90%);
 	backdrop-filter: blur(9px);

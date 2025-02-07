@@ -5,6 +5,7 @@ import Counter from '../../common/Counter/Counter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { clearBookDetails, fetchDetailsBooks } from '../../../store/reducers/booksListReducer';
+// import { addItem } from '../../../store/reducers/cartReducer';
 
 const OneBookDetails = () => {
 	const dispatch = useDispatch();
@@ -26,6 +27,10 @@ const OneBookDetails = () => {
 	const { volumeInfo, saleInfo } = bookDetails;
 	const { title, description, authors, categories, publishedDate } = volumeInfo || {};
 	const { listPrice } = saleInfo || {};
+
+	// const handleAddInCart = book => {
+	// 		dispatch(addItem(book));
+	// 	};
 
 	function shortenTitle(title, maxLength) {
 		if (title.length > maxLength) {

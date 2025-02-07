@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../../store/reducers/cartReducer';
 
 function RenderBooks({ books }) {
+	// books , popular books
 	const { loading, error } = useSelector(state => state.booksList);
 	const dispatch = useDispatch();
 	// Если идет загрузка
@@ -51,7 +52,7 @@ function RenderBooks({ books }) {
 							{shortenTitle(book.volumeInfo.title || 'Без названия', 30)}
 						</h2>
 						<p className={styles.authorBook}>{book.volumeInfo.authors?.join(', ') || 'Неизвестные авторы'}</p>
-						<p className={styles.priceBook}>{book.saleInfo.listPrice ? `${book.saleInfo.listPrice.amount} ${book.saleInfo.listPrice.currencyCode}` : 'Распродано'}</p>
+						<p className={styles.priceBook}>{book.saleInfo.listPrice ? `${Math.round(book.saleInfo.listPrice.amount)} $` : 'Распродано'}</p>
 					</li>
 				))
 			) : (
