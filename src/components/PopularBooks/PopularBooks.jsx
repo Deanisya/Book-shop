@@ -7,7 +7,7 @@ import LinkAllProducts from './LinkAllProducts/LinkAllProducts';
 import UncontrolledExample from '../bootstrapComponents/UncontrolledExample';
 
 const PopularBooks = () => {
-	const { loading, error } = useSelector(state => state.booksList);
+	// const { loading, error } = useSelector(state => state.booksList);
 
 	return (
 		<div style={{ paddingTop: '5rem' }}>
@@ -18,9 +18,9 @@ const PopularBooks = () => {
 					<h1 className={styles.title}>Popular Books</h1>
 					<span className={styles.line}></span>
 				</div>
-
-				{loading && <p>Загрузка...</p>}
-				{error && <p>{error}</p>}
+				{/* 
+				{loading && <p>Loading...</p>}
+				{error && <p>{error}</p>} */}
 				<CatalogPopularBooks />
 				<LinkAllProducts />
 			</div>

@@ -22,7 +22,7 @@ export default function ({ id }) {
 			<button className={s.counterMinus} onClick={handleDecrementCount}>
 				-
 			</button>
-			<span>{item.quantity}</span>
+			<span>{item?.quantity}</span>
 			<button className={s.counterPlus} onClick={handleIncrementCount}>
 				+
 			</button>

@@ -57,24 +57,28 @@
 				background: transparent;
 				border-top: 2px solid #fff;
 				border-radius: 0 0 8px 8px;
-
-				&:hover {
-					background: rgba(228, 228, 228, 0.9);
-				}
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-decoration: none;
 			}
 		}
-
+		.titleBook,
+		.authorBook {
+			cursor: pointer;
+		}
 		.titleBook {
 			font-weight: 400;
-			font-size: 18px;
+			font-size: 17px;
 			line-height: 130%;
 			text-align: center;
 			color: $light-colors-black-light;
-			height: 43px;
-			margin: 20px 0 15px;
+			height: 60px;
+			margin: 20px 0 10px;
 		}
 		.authorBook {
 			font-weight: 400;
+			// height: 43px;
 			font-size: 13px;
 			letter-spacing: 0.02em;
 			text-transform: capitalize;

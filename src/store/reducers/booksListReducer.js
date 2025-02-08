@@ -10,6 +10,9 @@ const initialState = {
 	loading: false,
 	error: null,
 	filterByPrice: false,
+	isSearching: false,
+	genre: '', // надо сделать
+	favourites: '', // и тут
 };
 
 // Асинхронное действие для получения популярных книг
@@ -22,7 +25,7 @@ export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', asy
 	// }
 
 	// Если данных нет — делаем запрос
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=fiction&maxResults=12&orderBy=relevance&key=${API_KEY}`);
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=40&orderBy=relevance&key=${API_KEY}`);
 	// if (!response.ok) {
 	// 	throw new Error('Ошибка при загрузке данных');
 	// }
@@ -35,9 +38,11 @@ export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', asy
 });
 
 // 🔹 Асинхронный экшен для поиска книг
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, startIndex }) => {
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&startIndex=${startIndex}&maxResults=12&key=${API_KEY}`);
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, startIndex = 0 }) => {
+	const encodedQuery = encodeURIComponent(searchQuery);
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=20&key=${API_KEY}`);
 	const data = await response.json();
+
 	return data.items || [];
 });
 // 🔹 Асинхронный экшен для деталей книги
@@ -55,24 +60,27 @@ const booksListReducer = createSlice({
 	reducers: {
 		setQuery(state, action) {
 			state.query = action.payload;
-			state.books = [];
+			// state.books = [];
 			state.page = 0;
+		},
+		setIsSearching: (state, action) => {
+			state.isSearching = action.payload;
+			state.books = [];
 		},
 		clearBookDetails(state) {
 			state.bookDetails = null;
 		},
-		toggleFilterByPrice(state) {
-			state.filterByPrice = !state.filterByPrice;
+		// toggleFilterByPrice(state) {
+		// 	state.filterByPrice = !state.filterByPrice;
 
-			if (state.books.length > 0) {
-				state.books = state.books.filter(book => book?.saleInfo?.listPrice?.amount);
-			} else {
-				state.filterPopularBooks = state.filterPopularBooks.filter(book => book?.saleInfo?.listPrice?.amount);
-			}
-		},
-
-		// incrementPage(state) {
-		// 	state.page += 1;
+		// 	if (state.filterByPrice) {
+		// 		// Фильтруем только книги с ценой
+		// 		state.books = state.books.filter(book => book?.saleInfo?.listPrice?.amount);
+		// 		state.filterPopularBooks = state.popularBooks.filter(book => book?.saleInfo?.listPrice?.amount);
+		// 	} else {
+		// 		// Возвращаем исходные данные
+		// 		state.books = [...state.popularBooks];
+		// 	}
 		// },
 	},
 	extraReducers: builder => {
@@ -98,7 +106,10 @@ const booksListReducer = createSlice({
 			})
 			.addCase(fetchBooks.fulfilled, (state, action) => {
 				state.loading = false;
-				state.books.push(...action.payload);
+
+				// Объединяем книги и убираем дубликаты
+				const combinedBooks = [...state.books, ...action.payload];
+				state.books = combinedBooks.filter((book, index, self) => self.findIndex(b => b.id === book.id) === index);
 			})
 			.addCase(fetchBooks.rejected, state => {
 				state.loading = false;
@@ -120,5 +131,5 @@ const booksListReducer = createSlice({
 	},
 });
 
-export const { setQuery, incrementPage, clearBookDetails, toggleFilterByPrice } = booksListReducer.actions;
+export const { setQuery, incrementPage, clearBookDetails, toggleFilterByPrice, setIsSearching } = booksListReducer.actions;
 export default booksListReducer.reducer;

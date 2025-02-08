@@ -4,8 +4,9 @@ import StarRating from '../../../common/StarRating/StarRating';
 import { useSelector } from 'react-redux';
 
 const ContentTabs = ({ activeTab }) => {
-	const { bookDetails } = useSelector(state => state.booksList);
-
+	const { bookDetails, loading } = useSelector(state => state.booksList);
+	if (loading) return <p></p>;
+	if (!bookDetails) return null;
 	if (!bookDetails?.volumeInfo) return <p>Книга не найдена</p>; // Проверяем bookDetails перед деструктуризацией обязательно!
 	const { volumeInfo } = bookDetails;
 	const { description } = volumeInfo || {};
@@ -14,7 +15,7 @@ const ContentTabs = ({ activeTab }) => {
 		<div className={s.tabsContent}>
 			{activeTab === 'tab1' && (
 				<p className={s.tabDescription}>
-					{description.replace(/<\/?[a-zA-Z]+>/gi, '') ||
+					{description?.replace(/<\/?[a-zA-Z]+>/gi, '') ||
 						'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, molestiae perferendis sapiente molestias dolores quae? Nostrum voluptates illum harum beatae voluptatum saepe explicabo rem, facilis ab, id culpa aspernatur ex.'}
 				</p>
 			)}

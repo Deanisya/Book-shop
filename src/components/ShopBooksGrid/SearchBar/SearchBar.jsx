@@ -1,43 +1,28 @@
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import debounce from 'lodash.debounce';
 import s from './SearchBar.module.scss';
-import { fetchBooks, setQuery } from '../../../store/reducers/booksListReducer';
+import { fetchBooks, setIsSearching, setQuery } from '../../../store/reducers/booksListReducer';
 
 const SearchBar = () => {
 	const dispatch = useDispatch();
 	const { query } = useSelector(state => state.booksList);
 
-	const debouncedFetchBooks = useCallback(
-		debounce(searchQuery => {
-			if (searchQuery.trim().length > 1) {
-				dispatch(fetchBooks({ searchQuery, startIndex: 0 }));
-			}
-		}, 500),
-		[dispatch]
-	);
-
-	// Слушаем изменения query и вызываем debouncedFetchBooks
-	useEffect(() => {
-		if (query.trim().length > 1) {
-			debouncedFetchBooks(query);
-		}
-		return () => {
-			debouncedFetchBooks.cancel();
-		};
-	}, [debouncedFetchBooks, query]);
-
+	// При клике на кнопку, выполняем поиск с текущим запросом
+	const handleInputChange = e => {
+		dispatch(setQuery(e.target.value)); // Исправлено: теперь query обновляется в Redux
+	};
 	// При клике на кнопку, выполняем поиск с текущим запросом
 	const handleSearch = () => {
-		if (query.trim().length > 1) {
+		if (query.trim().length > 0) {
 			dispatch(fetchBooks({ searchQuery: query, startIndex: 0 }));
+			dispatch(setIsSearching(true));
 		}
 	};
 
 	return (
 		<div className={s.searchBar}>
-			<input className={s.searchInput} type='text' value={query} onChange={e => dispatch(setQuery(e.target.value))} placeholder='Search book...' />
-			{/* <button className={s.searchButton} onClick={handleSearch}>
+			<input className={s.searchInput} type='text' value={query} onChange={handleInputChange} placeholder='Search book...' />
+			<button className={s.searchButton} onClick={handleSearch}>
 				<svg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'>
 					<path
 						fillRule='evenodd'
@@ -46,7 +31,7 @@ const SearchBar = () => {
 						fill='black'
 					/>
 				</svg>
-			</button> */}
+			</button>
 		</div>
 	);
 };

@@ -35,7 +35,7 @@ export default function () {
 				</div>
 				<div className={styles.cartItems}>
 					{Object.entries(items).map(([id, item]) => (
-						<CartItem item={item} id={id} />
+						<CartItem key={id} item={item} id={id} />
 					))}
 				</div>
 

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import book1 from '../../img/book1.png';
 
 // Создаем slice для корзины
 const cartSlice = createSlice({
@@ -12,10 +13,10 @@ const cartSlice = createSlice({
 	reducers: {
 		addItem(state, action) {
 			const { id, volumeInfo, saleInfo } = action.payload; // book.volumeInfo.imageLinks.thumbnail
-			const title = volumeInfo.title;
-			const price = Math.round(saleInfo.listPrice.amount ?? 0);
-			const img = volumeInfo.imageLinks.thumbnail;
-			const authors = volumeInfo.authors;
+			const title = volumeInfo?.title ?? 'Random title';
+			const price = Math.round(saleInfo?.listPrice?.amount ?? 0);
+			const img = volumeInfo?.imageLinks?.thumbnail ?? book1;
+			const authors = volumeInfo?.authors ?? 'Random author';
 
 			// Проверяем, если товар уже есть в корзине
 			if (state.items[id]) {

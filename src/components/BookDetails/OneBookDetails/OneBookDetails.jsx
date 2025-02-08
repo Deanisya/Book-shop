@@ -20,8 +20,9 @@ const OneBookDetails = () => {
 		};
 	}, [dispatch, id]);
 
-	if (loading) return <p>Загрузка...</p>;
+	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Ошибка: {error}</p>;
+	if (!bookDetails) return null;
 	if (!bookDetails?.volumeInfo) return <p>Книга не найдена</p>; // Проверяем bookDetails перед деструктуризацией обязательно!
 
 	const { volumeInfo, saleInfo } = bookDetails;
@@ -120,7 +121,7 @@ const OneBookDetails = () => {
 			</div>
 			<p className={s.bookDescription}>
 				{shortenTitle(
-					description.replace(/<\/?[a-zA-Z]+>/gi, '') ||
+					description?.replace(/<\/?[a-zA-Z]+>/gi, '') ||
 						'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, molestiae perferendis sapiente molestias dolores quae? Nostrum voluptates illum harum beatae voluptatum saepe explicabo rem, facilis ab, id culpa aspernatur ex.',
 					300
 				)}
