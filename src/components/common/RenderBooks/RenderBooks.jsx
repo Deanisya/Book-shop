@@ -1,33 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './RenderBooks.module.scss';
 import photo from '../../../img/book1.png';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../../store/reducers/cartReducer';
+import { useScroll } from '../../../hooks/useScroll';
+import { fetchBooks, incrementPage } from '../../../store/reducers/booksListReducer';
 
 function RenderBooks({ books }) {
-	// Получаем состояние загрузки и ошибки
-	const { loading, error } = useSelector(state => state.booksList);
+	const { loading, error, query, page } = useSelector(state => state.booksList);
+	const { toggleScroll } = useScroll();
 	const dispatch = useDispatch();
 
-	// Если идет загрузка
+	useEffect(() => {
+		if (page > 0) {
+			// При изменении страницы, загружаем новые книги
+			dispatch(fetchBooks({ searchQuery: query, page }));
+		}
+	}, [page, query, dispatch]);
+
 	if (loading) {
 		return <p>Loading...</p>;
 	}
 
-	// Если ошибка
 	if (error) {
 		return <p>Error: {error}</p>;
 	}
 
-	// Функция для сокращения заголовка
+	//  Для сокращения заголовка
 	function shortenTitle(title, maxLength) {
 		return title.length > maxLength ? title.slice(0, maxLength) + '...' : title;
 	}
 
-	// Функция для добавления книги в корзину
+	//  Для добавления книги в корзину
 	const handleAddInCart = book => {
 		dispatch(addItem(book));
+	};
+
+	const handleLoadMore = () => {
+		const currentScrollPosition = window.scrollY; // Сохраняем текущую позицию прокрутки
+
+		toggleScroll(false);
+		dispatch(incrementPage()); // Увеличиваем страницу
+		dispatch(fetchBooks({ searchQuery: query, page: page + 1 })).finally(() => {
+			// Восстанавливаем позицию прокрутки после загрузки
+			window.scrollTo(0, currentScrollPosition);
+			toggleScroll(true);
+		});
 	};
 
 	return (
@@ -67,6 +86,11 @@ function RenderBooks({ books }) {
 				</ul>
 			) : (
 				<p>Книг не найдено...</p>
+			)}
+			{!loading && (
+				<button onClick={handleLoadMore} className={styles.loadMoreButton}>
+					Загрузить ещё
+				</button>
 			)}
 		</>
 	);

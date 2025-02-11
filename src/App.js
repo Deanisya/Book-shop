@@ -17,12 +17,17 @@ import PopularBooks from './components//PopularBooks/PopularBooks';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ShopBooksGrid from './components/ShopBooksGrid/ShopBooksGrid';
 import { useEffect } from 'react';
+import { useScroll } from './hooks/useScroll';
 
 const ScrollToTop = () => {
 	const { pathname } = useLocation();
+	const { shouldScroll } = useScroll();
+	console.log('Should scroll:', shouldScroll);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
+		if (shouldScroll) {
+			window.scrollTo(0, 0);
+		}
 	}, [pathname]);
 
 	return null;

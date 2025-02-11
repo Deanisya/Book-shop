@@ -12,41 +12,31 @@ const initialState = {
 	filterByPrice: false,
 	isSearching: false,
 	genre: '', // надо сделать
-	favourites: '', // и тут
+	favorites: '', // и тут
+	page: 0,
+	totalPages: 0, // Количество страниц для пагинации
 };
 
 // Асинхронное действие для получения популярных книг
 export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', async () => {
-	// Проверяем, есть ли кешированные данные
-	// const cachedBooks = localStorage.getItem('popularBooks');
-	// if (cachedBooks) {
-	// 	console.log('Загружаем книги из localStorage');
-	// 	return JSON.parse(cachedBooks);
-	// }
-
-	// Если данных нет — делаем запрос
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=40&orderBy=relevance&key=${API_KEY}`);
-	// if (!response.ok) {
-	// 	throw new Error('Ошибка при загрузке данных');
-	// }
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=20&orderBy=relevance&key=${API_KEY}`);
 	const data = await response.json();
-
-	// Сохраняем результат в localStorage
-	// localStorage.setItem('popularBooks', JSON.stringify(data.items || []));
-
 	return data.items || [];
 });
 
 // 🔹 Асинхронный экшен для поиска книг
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, startIndex = 0 }) => {
-	const encodedQuery = encodeURIComponent(searchQuery);
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, page = 0 }) => {
+	const query = searchQuery || 'history+popular'; // Если searchQuery пустой, используем дефолтное значение
+	const encodedQuery = encodeURIComponent(query);
+	const startIndex = page * 20; // 🔹 Вычисляем стартовый индекс
 	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=20&key=${API_KEY}`);
 	const data = await response.json();
 
-	return data.items || [];
+	return { books: data.items || [], page };
 });
 // 🔹 Асинхронный экшен для деталей книги
 export const fetchDetailsBooks = createAsyncThunk('bookDetails/fetchBooks', async ({ id }) => {
+	if (!id) throw new Error('ID книги не передан');
 	const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}?key=${API_KEY}`);
 	const data = await response.json();
 	console.log(data);
@@ -60,8 +50,7 @@ const booksListReducer = createSlice({
 	reducers: {
 		setQuery(state, action) {
 			state.query = action.payload;
-			// state.books = [];
-			state.page = 0;
+			state.page = 0; // Сбрасываем пагинацию при новом поиске
 		},
 		setIsSearching: (state, action) => {
 			state.isSearching = action.payload;
@@ -70,18 +59,9 @@ const booksListReducer = createSlice({
 		clearBookDetails(state) {
 			state.bookDetails = null;
 		},
-		// toggleFilterByPrice(state) {
-		// 	state.filterByPrice = !state.filterByPrice;
-
-		// 	if (state.filterByPrice) {
-		// 		// Фильтруем только книги с ценой
-		// 		state.books = state.books.filter(book => book?.saleInfo?.listPrice?.amount);
-		// 		state.filterPopularBooks = state.popularBooks.filter(book => book?.saleInfo?.listPrice?.amount);
-		// 	} else {
-		// 		// Возвращаем исходные данные
-		// 		state.books = [...state.popularBooks];
-		// 	}
-		// },
+		incrementPage(state) {
+			state.page += 1; // Увеличиваем страницу при скролле вниз
+		},
 	},
 	extraReducers: builder => {
 		builder
@@ -108,9 +88,13 @@ const booksListReducer = createSlice({
 				state.loading = false;
 
 				// Объединяем книги и убираем дубликаты
-				const combinedBooks = [...state.books, ...action.payload];
+				const combinedBooks = [...state.books, ...action.payload.books];
 				state.books = combinedBooks.filter((book, index, self) => self.findIndex(b => b.id === book.id) === index);
+
+				// Обновляем страницу (берем из action.payload)
+				state.page = action.payload.page;
 			})
+
 			.addCase(fetchBooks.rejected, state => {
 				state.loading = false;
 				state.error = 'Ошибка при загрузке данных.';

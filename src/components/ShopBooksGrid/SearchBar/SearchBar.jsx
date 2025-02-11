@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './SearchBar.module.scss';
 import { fetchBooks, setIsSearching, setQuery } from '../../../store/reducers/booksListReducer';
@@ -18,6 +18,10 @@ const SearchBar = () => {
 			dispatch(setIsSearching(true));
 		}
 	};
+	// Загружаем книги с дефолтным значением при первом рендере
+	useEffect(() => {
+		dispatch(fetchBooks({ searchQuery: '' }));
+	}, [dispatch]);
 
 	return (
 		<div className={s.searchBar}>
