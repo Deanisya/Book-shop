@@ -4,12 +4,12 @@ import photo from '../../../img/book1.png';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../../store/reducers/cartReducer';
-import { useScroll } from '../../../hooks/useScroll';
-import { fetchBooks, incrementPage } from '../../../store/reducers/booksListReducer';
+
+import { fetchBooks } from '../../../store/reducers/booksListReducer';
 
 function RenderBooks({ books }) {
 	const { loading, error, query, page } = useSelector(state => state.booksList);
-	const { toggleScroll } = useScroll();
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -35,18 +35,6 @@ function RenderBooks({ books }) {
 	//  Для добавления книги в корзину
 	const handleAddInCart = book => {
 		dispatch(addItem(book));
-	};
-
-	const handleLoadMore = () => {
-		const currentScrollPosition = window.scrollY; // Сохраняем текущую позицию прокрутки
-
-		toggleScroll(false);
-		dispatch(incrementPage()); // Увеличиваем страницу
-		dispatch(fetchBooks({ searchQuery: query, page: page + 1 })).finally(() => {
-			// Восстанавливаем позицию прокрутки после загрузки
-			window.scrollTo(0, currentScrollPosition);
-			toggleScroll(true);
-		});
 	};
 
 	return (
@@ -86,11 +74,6 @@ function RenderBooks({ books }) {
 				</ul>
 			) : (
 				<p>Книг не найдено...</p>
-			)}
-			{!loading && (
-				<button onClick={handleLoadMore} className={styles.loadMoreButton}>
-					Загрузить ещё
-				</button>
 			)}
 		</>
 	);

@@ -12,14 +12,14 @@ const initialState = {
 	filterByPrice: false,
 	isSearching: false,
 	genre: '', // надо сделать
-	favorites: '', // и тут
+	favorites: [], // и тут
 	page: 0,
 	totalPages: 0, // Количество страниц для пагинации
 };
 
 // Асинхронное действие для получения популярных книг
 export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', async () => {
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=20&orderBy=relevance&key=${API_KEY}`);
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=10&orderBy=relevance&key=${API_KEY}`);
 	const data = await response.json();
 	return data.items || [];
 });
@@ -28,8 +28,8 @@ export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', asy
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, page = 0 }) => {
 	const query = searchQuery || 'history+popular'; // Если searchQuery пустой, используем дефолтное значение
 	const encodedQuery = encodeURIComponent(query);
-	const startIndex = page * 20; // 🔹 Вычисляем стартовый индекс
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=20&key=${API_KEY}`);
+	const startIndex = page * 10; // 🔹 Вычисляем стартовый индекс
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=10&key=${API_KEY}`);
 	const data = await response.json();
 
 	return { books: data.items || [], page };
