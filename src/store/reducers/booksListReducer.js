@@ -11,10 +11,10 @@ const initialState = {
 	error: null,
 	filterByPrice: false,
 	isSearching: false,
-	genre: '', // надо сделать
-	favorites: [], // и тут
-	page: 0,
-	totalPages: 0, // Количество страниц для пагинации
+	category: '', // надо сделать
+	favorites: [],
+	page: 0, // ?
+	totalPages: 0, // Количество страниц для пагинации ?
 };
 
 // Асинхронное действие для получения популярных книг
@@ -25,8 +25,8 @@ export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', asy
 });
 
 // 🔹 Асинхронный экшен для поиска книг
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, page = 0 }) => {
-	const query = searchQuery || 'history+popular'; // Если searchQuery пустой, используем дефолтное значение
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, category, page = 0 }) => {
+	const query = searchQuery ? searchQuery : category ? category : 'history+popular'; // Если searchQuery пустой, используем дефолтное значение
 	const encodedQuery = encodeURIComponent(query);
 	const startIndex = page * 10; // 🔹 Вычисляем стартовый индекс
 	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=10&key=${API_KEY}`);
@@ -34,6 +34,7 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQu
 
 	return { books: data.items || [], page };
 });
+
 // 🔹 Асинхронный экшен для деталей книги
 export const fetchDetailsBooks = createAsyncThunk('bookDetails/fetchBooks', async ({ id }) => {
 	if (!id) throw new Error('ID книги не передан');
@@ -51,6 +52,7 @@ const booksListReducer = createSlice({
 		setQuery(state, action) {
 			state.query = action.payload;
 			state.page = 0; // Сбрасываем пагинацию при новом поиске
+			state.books = [];
 		},
 		setIsSearching: (state, action) => {
 			state.isSearching = action.payload;
@@ -61,6 +63,20 @@ const booksListReducer = createSlice({
 		},
 		incrementPage(state) {
 			state.page += 1; // Увеличиваем страницу при скролле вниз
+		},
+		addToFavorites(state, action) {
+			const book = action.payload;
+
+			if (!state.favorites.find(fav => fav.id === book.id)) {
+				state.favorites.push(book);
+			}
+		},
+		removeFromFavorites(state, action) {
+			state.favorites = state.favorites.filter(fav => fav.id !== action.payload);
+		},
+		setCategory(state, action) {
+			state.category = action.payload;
+			state.books = [];
 		},
 	},
 	extraReducers: builder => {
@@ -115,5 +131,5 @@ const booksListReducer = createSlice({
 	},
 });
 
-export const { setQuery, incrementPage, clearBookDetails, toggleFilterByPrice, setIsSearching } = booksListReducer.actions;
+export const { setQuery, incrementPage, clearBookDetails, toggleFilterByPrice, setIsSearching, addToFavorites, removeFromFavorites, setCategory } = booksListReducer.actions;
 export default booksListReducer.reducer;

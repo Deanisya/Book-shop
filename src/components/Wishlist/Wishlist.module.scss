@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+.wishlist {
+	padding-top: 150px;
+	min-height: 70vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	table {
+		margin-top: 64px;
+		margin-bottom: 150px;
+		thead {
+			tr {
+				th {
+					border: 1px solid $light-colors-gray-light;
+					text-align: center;
+					padding: 40px 20px;
+				}
+			}
+		}
+		tbody {
+			tr {
+				td {
+					border: 1px solid $light-colors-gray-light;
+					text-align: center;
+					width: 200px;
+					padding: 40px 20px;
+				}
+			}
+		}
+	}
+}

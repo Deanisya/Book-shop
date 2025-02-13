@@ -1,11 +1,15 @@
 import React from 'react';
 import s from './HeaderIcon.module.scss';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openSidebar } from '../../../store/reducers/cartReducer';
 import CartIcon from '../../Cart/CartIcon/CartIcon';
 
 export default function HeaderIcon() {
+	const { totalQuantity } = useSelector(state => state.cart);
+	const { favorites } = useSelector(state => state.booksList);
+	console.log(favorites.length);
+
 	const dispatch = useDispatch();
 	const handleOpenSidebar = () => {
 		dispatch(openSidebar());
@@ -41,9 +45,9 @@ export default function HeaderIcon() {
 						fill='black'
 					/>
 				</svg>
-				<CartIcon />
+				<CartIcon quantity={totalQuantity} />
 			</a>
-			<Link to='/wishlist' className={s.HeaderIcon}>
+			<Link to='/wishlist' className={s.HeaderIcon} style={{ position: 'relative' }}>
 				<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
 					<g clipPath='url(#clip0_2046_6520)'>
 						<path
@@ -59,6 +63,7 @@ export default function HeaderIcon() {
 						</clipPath>
 					</defs>
 				</svg>
+				<CartIcon quantity={favorites.length} />
 			</Link>
 			<Link to='/account' className={s.HeaderIcon}>
 				<svg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'>

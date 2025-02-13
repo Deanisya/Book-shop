@@ -12,7 +12,7 @@ const cartSlice = createSlice({
 	},
 	reducers: {
 		addItem(state, action) {
-			const { id, volumeInfo, saleInfo } = action.payload; // book.volumeInfo.imageLinks.thumbnail
+			const { id, volumeInfo, saleInfo } = action.payload; //
 			const title = volumeInfo?.title ?? 'Random title';
 			const price = Math.round(saleInfo?.listPrice?.amount ?? 0);
 			const img = volumeInfo?.imageLinks?.thumbnail ?? book1;

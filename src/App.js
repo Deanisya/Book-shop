@@ -18,6 +18,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import ShopBooksGrid from './components/ShopBooksGrid/ShopBooksGrid';
 import { useEffect } from 'react';
 import { useScroll } from './hooks/useScroll';
+import Wishlist from './components/Wishlist/Wishlist';
 
 const ScrollToTop = () => {
 	const { pathname } = useLocation();
@@ -49,7 +50,7 @@ function App() {
 					<Route path='checkout' element={<Checkout />} />
 					<Route path='order' element={<Order />} />
 					<Route path='contacts' element={<Contacts />} />
-					<Route path='wishlist' element={<BookDetails />} />
+					<Route path='wishlist' element={<Wishlist />} />
 					<Route path='account' element={<Account />} />
 					<Route path='password' element={<Password />} />
 					<Route path='privacy' element={<PrivacyPolicy />} />
