@@ -20,19 +20,3 @@ $light-colors-white-light: #fff;
 
 $font-family: 'DM Sans', sans-serif;
 $second-family: 'Allerta Stencil', sans-serif;
-
-// Кнопки
-
-.button__light {
-	border: 1px solid $light-colors-black-light;
-	border-radius: 4px;
-	width: 288px;
-	height: 32px;
-}
-.button__dark {
-	border: 1px solid $light-colors-black-light;
-	border-radius: 4px;
-	width: 288px;
-	height: 32px;
-	background-color: $light-colors-black-light;
-}

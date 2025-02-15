@@ -5,22 +5,19 @@ import styles from './PopularBooks.module.scss';
 import CatalogPopularBooks from './CatalogPopularBooks/CatalogPopularBooks';
 import LinkAllProducts from './LinkAllProducts/LinkAllProducts';
 import UncontrolledExample from '../bootstrapComponents/UncontrolledExample';
+import RandomQuoteOfTheDay from '../RandomQuoteOfTheDay/RandomQuoteOfTheDay';
 
 const PopularBooks = () => {
-	// const { loading, error } = useSelector(state => state.booksList);
-
 	return (
 		<div style={{ paddingTop: '5rem' }}>
 			<UncontrolledExample />
+			<RandomQuoteOfTheDay />
 			<div className={styles.catalogBooksBlock}>
 				<div className={styles.titleBlock}>
 					<span className={styles.line}></span>
-					<h1 className={styles.title}>Popular Books</h1>
+					<h2 className={styles.title}>Popular Books</h2>
 					<span className={styles.line}></span>
 				</div>
-				{/* 
-				{loading && <p>Loading...</p>}
-				{error && <p>{error}</p>} */}
 				<CatalogPopularBooks />
 				<LinkAllProducts />
 			</div>

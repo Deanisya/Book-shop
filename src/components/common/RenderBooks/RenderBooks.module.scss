@@ -3,11 +3,23 @@
 .listPopularBooks {
 	display: flex;
 	flex-wrap: wrap;
+	// display: grid;
+	// grid-template-columns: repeat(6, 1fr);
 	padding: 0;
 	justify-content: space-between;
 	gap: 15px;
+	// @media (1000px <= width < 1300px) {
+	// 	grid-template-columns: repeat(4, 1fr);
+	// 	// gap: 35px;
+	// }
+	// @media (700px <= width < 1000px) {
+	// 	grid-template-columns: repeat(3, 1fr);
+	// }
+	// @media (320px <= width < 700px) {
+	// 	grid-template-columns: repeat(2, 1fr);
+	// }
 	.popularBook {
-		width: 180px;
+		width: 200px;
 		display: flex;
 		align-items: center;
 		flex-direction: column;

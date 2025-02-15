@@ -5,6 +5,7 @@ const initialState = {
 	popularBooks: [],
 	filterPopularBooks: [],
 	books: [],
+	allBooks: [],
 	bookDetails: null,
 	query: '',
 	loading: false,
@@ -15,11 +16,12 @@ const initialState = {
 	favorites: [],
 	page: 0, // ?
 	totalPages: 0, // Количество страниц для пагинации ?
+	inStock: false,
 };
 
 // Асинхронное действие для получения популярных книг
 export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', async () => {
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=10&orderBy=relevance&key=${API_KEY}`);
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=12&orderBy=relevance&key=${API_KEY}`);
 	const data = await response.json();
 	return data.items || [];
 });
@@ -29,7 +31,7 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQu
 	const query = searchQuery ? searchQuery : category ? category : 'history+popular'; // Если searchQuery пустой, используем дефолтное значение
 	const encodedQuery = encodeURIComponent(query);
 	const startIndex = page * 10; // 🔹 Вычисляем стартовый индекс
-	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=10&key=${API_KEY}`);
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=20&key=${API_KEY}`);
 	const data = await response.json();
 
 	return { books: data.items || [], page };
@@ -54,6 +56,18 @@ const booksListReducer = createSlice({
 			state.page = 0; // Сбрасываем пагинацию при новом поиске
 			state.books = [];
 		},
+		toggleFilterByInStock(state) {
+			state.inStock = !state.inStock;
+
+			if (state.inStock) {
+				// Фильтруем только книги с ценой
+				state.books = state.allBooks.filter(book => book.saleInfo?.listPrice?.amount !== undefined);
+			} else {
+				// Возвращаем полный список книг
+				state.books = [...state.allBooks];
+			}
+		},
+
 		setIsSearching: (state, action) => {
 			state.isSearching = action.payload;
 			state.books = [];
@@ -106,7 +120,7 @@ const booksListReducer = createSlice({
 				// Объединяем книги и убираем дубликаты
 				const combinedBooks = [...state.books, ...action.payload.books];
 				state.books = combinedBooks.filter((book, index, self) => self.findIndex(b => b.id === book.id) === index);
-
+				state.allBooks = action.payload.books;
 				// Обновляем страницу (берем из action.payload)
 				state.page = action.payload.page;
 			})
@@ -131,5 +145,5 @@ const booksListReducer = createSlice({
 	},
 });
 
-export const { setQuery, incrementPage, clearBookDetails, toggleFilterByPrice, setIsSearching, addToFavorites, removeFromFavorites, setCategory } = booksListReducer.actions;
+export const { setQuery, incrementPage, clearBookDetails, toggleFilterByPrice, setIsSearching, addToFavorites, removeFromFavorites, setCategory, toggleFilterByInStock } = booksListReducer.actions;
 export default booksListReducer.reducer;

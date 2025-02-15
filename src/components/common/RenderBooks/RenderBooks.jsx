@@ -15,9 +15,12 @@ function RenderBooks({ books }) {
 
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(fetchBooks({ searchQuery: query, category, page }));
-	}, [query, category, page, dispatch]);
+	// useEffect(() => {
+	// 	// Проверяем, есть ли книги в store, если нет, то запускаем fetchBooks
+	// 	if (books.length === 0 && !loading) {
+	// 		dispatch(fetchBooks({ searchQuery: query, category, page }));
+	// 	}
+	// }, [query, category, page, dispatch, books.length, loading]);
 
 	if (loading) {
 		return <p>Loading...</p>;
