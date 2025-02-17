@@ -1,0 +1,28 @@
+.addInCart {
+	cursor: pointer;
+}
+.addInCartShop {
+	background: rgba(255, 255, 255, 0.9);
+	width: 96%;
+	bottom: 42%;
+	opacity: 0;
+	border-radius: 8px;
+	position: absolute;
+	transition: all 0.3s ease;
+	height: 30px;
+	border: none;
+	font-weight: 700;
+	font-size: 15px;
+	color: #9a9a9a;
+	text-transform: uppercase;
+}
+.addInCartShop:hover {
+	opacity: 1;
+}
+.addInCartBookDet {
+	border: 1px solid #000;
+	border-radius: 4px;
+	width: 30%;
+	height: 53px;
+	background-color: transparent;
+}

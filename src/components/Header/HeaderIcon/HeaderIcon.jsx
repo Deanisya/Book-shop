@@ -8,7 +8,6 @@ import CartIcon from '../../Cart/CartIcon/CartIcon';
 export default function HeaderIcon() {
 	const { totalQuantity } = useSelector(state => state.cart);
 	const { favorites } = useSelector(state => state.booksList);
-	console.log(favorites.length);
 
 	const dispatch = useDispatch();
 	const handleOpenSidebar = () => {

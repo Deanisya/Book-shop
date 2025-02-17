@@ -1,27 +1,39 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-
-function valuetext(value) {
-	return `${value}`;
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { setInStock, setPriceRange } from '../../store/reducers/booksListReducer';
 
 export default function RangeSlider() {
-	const [value, setValue] = React.useState([10, 37]);
+	const dispatch = useDispatch();
+	const { minPrice, maxPrice, inStock } = useSelector(state => state.booksList);
+	const [range, setRange] = useState([minPrice, maxPrice]);
 
+	// Синхронизируем локальное состояние с Redux при изменении глобальных значений
+	useEffect(() => {
+		setRange([minPrice, maxPrice]);
+	}, [minPrice, maxPrice]);
+
+	// Обновляем локальное состояние при движении слайдера
 	const handleChange = (event, newValue) => {
-		setValue(newValue);
+		setRange(newValue);
+	};
+
+	// Отправляем данные в Redux только при отпускании слайдера
+	const handleChangeCommitted = (event, newValue) => {
+		dispatch(setPriceRange({ min: newValue[0], max: newValue[1] }));
+		dispatch(setInStock(false));
 	};
 
 	return (
 		<div>
 			<Box sx={{ width: '100%' }}>
 				<Slider
-					getAriaLabel={() => 'Temperature range'}
-					value={value}
+					getAriaLabel={() => 'Price range'}
+					value={range}
 					onChange={handleChange}
+					onChangeCommitted={handleChangeCommitted} // ✅ Отправляем в Redux только при отпускании
 					valueLabelDisplay='off'
-					getAriaValueText={valuetext}
 					sx={{
 						color: '#565656',
 						height: 4,
@@ -30,7 +42,6 @@ export default function RangeSlider() {
 							bgcolor: 'black',
 							border: 'none',
 						},
-
 						'& .MuiSlider-thumb': {
 							height: 15,
 							width: 15,
@@ -43,19 +54,19 @@ export default function RangeSlider() {
 								outline: 'none',
 							},
 						},
-						'&:focus': {
-							outline: 'none',
-						},
 						'& .MuiSlider-valueLabel': {
 							backgroundColor: 'black',
 							boxShadow: 'none',
 						},
 					}}
+					min={0}
+					max={15000}
+					step={100}
 				/>
 			</Box>
 			<div style={{ display: 'flex', justifyContent: 'space-between', color: '#565656' }}>
 				<span>
-					Price: ${value[0]} - ${value[1]}
+					Price: ${range[0]} - ${range[1]}
 				</span>
 				<span>Filter</span>
 			</div>

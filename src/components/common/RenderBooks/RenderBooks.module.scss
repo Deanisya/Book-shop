@@ -6,8 +6,8 @@
 	// display: grid;
 	// grid-template-columns: repeat(6, 1fr);
 	padding: 0;
-	justify-content: space-between;
-	gap: 15px;
+	justify-content: center;
+	gap: 25px;
 	// @media (1000px <= width < 1300px) {
 	// 	grid-template-columns: repeat(4, 1fr);
 	// 	// gap: 35px;
@@ -35,7 +35,7 @@
 			border-radius: 8px;
 
 			&:hover {
-				.addBookToCart {
+				.sold {
 					opacity: 1;
 				}
 			}
@@ -45,7 +45,7 @@
 				height: 180px;
 				box-shadow: 0 0 10px 2px rgba(34, 60, 80, 0.5);
 			}
-			.addBookToCart,
+			.sold,
 			.seeDetails {
 				position: absolute;
 				transition: opacity 0.3s ease;
@@ -56,20 +56,17 @@
 				color: $dark-colors-light-gray-dark;
 				text-transform: uppercase;
 			}
-			.addBookToCart {
+			.sold {
 				background: rgba(255, 255, 255, 0.9);
 				width: 96%;
-				bottom: 42%;
+				bottom: 36%;
 				opacity: 0;
 				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
-			.favoritesBtn {
-				position: absolute;
-				right: 0;
-				top: 0;
-				background: transparent;
-				border: none;
-			}
+
 			.seeDetails {
 				width: 100%;
 				bottom: 0;

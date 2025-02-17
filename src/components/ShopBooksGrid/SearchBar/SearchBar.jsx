@@ -7,9 +7,8 @@ const SearchBar = () => {
 	const dispatch = useDispatch();
 	const { query } = useSelector(state => state.booksList);
 
-	// При клике на кнопку, выполняем поиск с текущим запросом
 	const handleInputChange = e => {
-		dispatch(setQuery(e.target.value)); // Исправлено: теперь query обновляется в Redux
+		dispatch(setQuery(e.target.value));
 	};
 	// При клике на кнопку, выполняем поиск с текущим запросом
 	const handleSearch = () => {
@@ -18,10 +17,6 @@ const SearchBar = () => {
 			dispatch(setIsSearching(true));
 		}
 	};
-	// Загружаем книги с дефолтным значением при первом рендере
-	useEffect(() => {
-		dispatch(fetchBooks({ searchQuery: '' }));
-	}, [dispatch]);
 
 	return (
 		<div className={s.searchBar}>

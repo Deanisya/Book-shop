@@ -6,16 +6,16 @@ import { useSelector } from 'react-redux';
 const ContentTabs = ({ activeTab }) => {
 	const { bookDetails, loading } = useSelector(state => state.booksList);
 	if (loading) return <p></p>;
-	if (!bookDetails) return null;
+	// if (!bookDetails) return null;
 	if (!bookDetails?.volumeInfo) return <p>Книга не найдена</p>; // Проверяем bookDetails перед деструктуризацией обязательно!
 	const { volumeInfo } = bookDetails;
-	const { description } = volumeInfo || {};
+	const { description, pageCount, publisher, dimensions, language } = volumeInfo || {};
 
 	return (
 		<div className={s.tabsContent}>
 			{activeTab === 'tab1' && (
 				<p className={s.tabDescription}>
-					{description?.replace(/<\/?[a-zA-Z]+>/gi, '') ||
+					{description?.replace(/<\/?[a-zA-Z]+>/gi, '').replace(/&quot;(.*?)&quot;/g, '$1') ||
 						'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, molestiae perferendis sapiente molestias dolores quae? Nostrum voluptates illum harum beatae voluptatum saepe explicabo rem, facilis ab, id culpa aspernatur ex.'}
 				</p>
 			)}
@@ -23,16 +23,19 @@ const ContentTabs = ({ activeTab }) => {
 			{activeTab === 'tab2' && (
 				<ul className={s.tabInfo}>
 					<li className={s.tabInfoItem}>
-						Weight:&nbsp;&nbsp;<span className={s.tabInfoValue}>0.3 kg</span>
+						Page count:&nbsp;&nbsp;<span className={s.tabInfoValue}>{pageCount ? pageCount : 300} pages</span>
 					</li>
 					<li className={s.tabInfoItem}>
-						Dimentions:&nbsp;&nbsp;<span className={s.tabInfoValue}>15 x 10 x 1 cm</span>
+						Dimentions:&nbsp;&nbsp;
+						<span className={s.tabInfoValue}>
+							{Math.floor(dimensions?.height) || '23 cm'} x {Math.floor(dimensions?.width) || '13 cm'} x {Math.floor(dimensions?.thickness) || '1 cm'}
+						</span>
 					</li>
 					<li className={s.tabInfoItem}>
-						Colours:&nbsp;&nbsp;<span className={s.tabInfoValue}>Black, Browns, White</span>
+						Language:&nbsp;&nbsp;<span className={s.tabInfoValue}>{language ? language : 'Unknown'}</span>
 					</li>
 					<li className={s.tabInfoItem}>
-						Material:&nbsp;&nbsp;<span className={s.tabInfoValue}>Metal</span>
+						Publisher:&nbsp;&nbsp;<span className={s.tabInfoValue}>{publisher ? publisher : 'Unknown'}</span>
 					</li>
 				</ul>
 			)}
