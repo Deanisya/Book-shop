@@ -30,7 +30,7 @@ function RenderBooks({ books }) {
 	// 		acc.push(book);
 	// 	}
 	// 	return acc;
-	// }, []);
+	// }, []); ----------------------- появление дубликатов
 
 	if (loading) {
 		return <p>Loading...</p>;

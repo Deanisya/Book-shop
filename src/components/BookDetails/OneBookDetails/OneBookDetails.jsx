@@ -5,7 +5,6 @@ import Counter from '../../common/Counter/Counter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { clearBookDetails, fetchDetailsBooks } from '../../../store/reducers/booksListReducer';
-import { addItem } from '../../../store/reducers/cartReducer';
 import MyFavorites from '../../common/MyFavorites/MyFavorites';
 import AddInCart from '../../common/AddInCart/AddInCart';
 
@@ -29,10 +28,10 @@ const OneBookDetails = () => {
 	if (!bookDetails?.volumeInfo) return <p>Книга не найдена</p>; // Проверяем bookDetails перед деструктуризацией обязательно!
 
 	const { volumeInfo, saleInfo } = bookDetails;
-	const { title, description, authors, categories, publishedDate, panelizationSummary } = volumeInfo || {};
+	const { title, description, authors, categories, publishedDate } = volumeInfo || {};
 
 	const { listPrice } = saleInfo || {};
-	// const { printedPageCount } = panelizationSummary || {};
+
 	const book = {
 		id,
 		volumeInfo,
@@ -135,7 +134,7 @@ const OneBookDetails = () => {
 
 			{listPrice ? <div className={s.blockAddBookToCart}>{items[book.id]?.quantity > 0 ? <Counter id={id} /> : <AddInCart book={book} addInCartBookDet />}</div> : ''}
 			<div className={s.blockWishlistAndMedia}>
-				<MyFavorites book={items} />
+				<MyFavorites book={book} />
 				<BlockMedia />
 			</div>
 			<div className={s.blockSku}>

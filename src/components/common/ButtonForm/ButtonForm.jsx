@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './ButtonForm.module.scss';
 
-const ButtonForm = ({ title, width, onClick, book }) => {
+const ButtonForm = ({ title, width }) => {
 	return (
-		<button onClick={() => onClick(book)} style={{ width: `${width}` }} className={s.formBtn}>
+		<button style={{ width: `${width}` }} className={s.formBtn}>
 			{title}
 		</button>
 	);

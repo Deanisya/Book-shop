@@ -1,7 +1,21 @@
 .container {
 	display: flex;
 	flex-direction: column;
-
-	width: calc(100% - 200px);
 	margin: 0 auto;
+	justify-content: space-between;
+	@media (max-width: 768px) {
+		width: calc(100% - 20px);
+	}
+	@media (min-width: 769px) and (max-width: 991px) {
+		width: calc(100% - 40px);
+	}
+	@media (min-width: 992px) and (max-width: 1200px) {
+		width: calc(100% - 80px);
+	}
+	@media (min-width: 1201px) and (max-width: 1400px) {
+		width: calc(100% - 120px);
+	}
+	@media (min-width: 1401px) {
+		width: calc(100% - 200px);
+	}
 }

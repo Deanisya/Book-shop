@@ -4,7 +4,7 @@ import { addItem } from '../../../store/reducers/cartReducer';
 import clsx from 'clsx';
 import s from './AddInCart.module.css';
 
-function AddInCart({ book, addInCartBookDet, addInCartShop }) {
+function AddInCart({ book, addInCartBookDet, addInCartShop, formBtn }) {
 	const dispatch = useDispatch();
 	//  Для добавления книги в корзину
 	const handleAddInCart = book => {
@@ -16,9 +16,10 @@ function AddInCart({ book, addInCartBookDet, addInCartShop }) {
 			className={clsx(s.addInCart, {
 				[s.addInCartBookDet]: addInCartBookDet,
 				[s.addInCartShop]: addInCartShop,
+				[s.formBtn]: formBtn,
 			})}
 		>
-			Add cart
+			Add in cart
 		</button>
 	);
 }
