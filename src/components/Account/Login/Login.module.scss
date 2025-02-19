@@ -1,0 +1,39 @@
+@import '../../../styles/variables.scss';
+.accountForm {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	.accountFormCheckbox {
+		margin-bottom: 69px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		@media (320px <= width <= 768px) {
+			margin-bottom: 39px;
+		}
+	}
+	.accountFormForgottenPasswordLink {
+		margin: 0 auto;
+		text-decoration: none;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 169%;
+		color: $light-colors-black-light;
+		cursor: pointer;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+.accountForm > :nth-child(1) {
+	margin-bottom: 46px;
+	@media (320px <= width <= 768px) {
+		margin-bottom: 20px;
+	}
+}
+.accountForm > :nth-child(2) {
+	margin-bottom: 15px;
+}
+.accountForm > :nth-child(4) {
+	margin-bottom: 15px;
+}

@@ -5,23 +5,39 @@
 	align-items: center;
 	justify-content: center;
 	padding: 128px 0;
+	width: 100%;
+	@media (320px <= width <= 768px) {
+		padding-top: 128px;
+		padding-bottom: 48px;
+	}
 	.accountWrapper {
+		width: 40%;
 		text-align: center;
-		width: 500px;
+		@media (320px <= width <= 768px) {
+			width: 90%;
+		}
+
 		.blockEnter {
 			margin-top: 64px;
 			border-radius: 8px;
-			width: 500px;
+			padding: 5px;
 			height: 60px;
 			background: $light-colors-light-gray-light;
 			display: flex;
+			gap: 5px;
 			align-items: center;
-			justify-content: space-around;
+			justify-content: center;
 			margin-bottom: 126px;
+			@media (320px <= width <= 768px) {
+				margin: 20px 0;
+			}
 			.btnEnter {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				border: none;
 				border-radius: 8px;
-				width: 236px;
+				width: 100%;
 				height: 50px;
 				box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
 				background: $light-colors-white-light;
@@ -33,44 +49,6 @@
 			.btnEnterNotActive {
 				background-color: transparent;
 			}
-		}
-		.accountForm {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-			.accountFormCheckbox {
-				margin-bottom: 69px;
-				display: flex;
-				align-items: center;
-				gap: 10px;
-			}
-			.accountFormForgottenPasswordLink {
-				margin: 0 auto;
-				text-decoration: none;
-				font-weight: 400;
-				font-size: 16px;
-				line-height: 169%;
-				color: $light-colors-black-light;
-				cursor: pointer;
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-		}
-		.accountForm > :nth-child(1) {
-			margin-bottom: 46px;
-		}
-		.accountForm > :nth-child(2) {
-			margin-bottom: 15px;
-		}
-		.accountForm > :nth-child(4) {
-			margin-bottom: 15px;
-		}
-		.accountFormTwo {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-			gap: 46px;
 		}
 	}
 }

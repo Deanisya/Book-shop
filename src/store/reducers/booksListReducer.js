@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const API_KEY = 'AIzaSyAmAcNt2YEJaAyzDMRxBsDxafm-3tC3bY4';
+const API_KEY = 'AIzaSyBIVxIvSaQTE85dQ5QFppLL8L3AbOroapg';
 const initialState = {
 	popularBooks: [],
 	filterPopularBooks: [],
@@ -60,15 +60,6 @@ const booksListReducer = createSlice({
 			state.query = action.payload;
 			state.page = 0; // Сбрасываем пагинацию при новом поиске
 		},
-		toggleFilterByInStock(state) {
-			state.inStock = !state.inStock;
-
-			if (state.inStock) {
-				state.books = state.allBooks.filter(book => book.saleInfo?.listPrice?.amount !== undefined);
-			} else {
-				state.books = [...state.allBooks];
-			}
-		},
 		setIsSearching: (state, action) => {
 			state.isSearching = action.payload;
 			state.books = [];
@@ -92,6 +83,15 @@ const booksListReducer = createSlice({
 		setCategory(state, action) {
 			state.category = action.payload;
 			state.books = [];
+		},
+		toggleFilterByInStock(state) {
+			state.inStock = !state.inStock;
+
+			if (state.inStock) {
+				state.books = state.allBooks.filter(book => book.saleInfo?.listPrice?.amount !== undefined);
+			} else {
+				state.books = [...state.allBooks];
+			}
 		},
 		setPriceRange(state, action) {
 			const { min, max } = action.payload;

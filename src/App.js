@@ -12,6 +12,7 @@ import Sidebar from './components/Cart/Sidebar/Sidebar';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Cart/Checkout/Checkout';
 import Order from './components/Cart/Checkout/Order/Order';
+import BurgerMenu from './components/Header/BurgerMenu/BurgerMenu';
 
 import PopularBooks from './components//PopularBooks/PopularBooks';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
@@ -40,6 +41,7 @@ function App() {
 			<Header />
 			<Container>
 				<Sidebar />
+				<BurgerMenu />
 				<ScrollToTop />
 				<Routes>
 					<Route path='/' element={<PopularBooks />} />

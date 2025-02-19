@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInStock, setPriceRange } from '../../store/reducers/booksListReducer';
+import { setInStock, setPriceRange } from '../../../store/reducers/booksListReducer';
 
 export default function RangeSlider() {
 	const dispatch = useDispatch();

@@ -8,6 +8,7 @@ const cartSlice = createSlice({
 		items: {}, // Список товаров, где ключ — id товара, значение — { name, price, quantity }
 		totalQuantity: 0, // Общее количество товаров
 		isSidebarOpen: false,
+		isOpenMenuBurger: false,
 		totalPrice: 0,
 	},
 	reducers: {
@@ -47,6 +48,12 @@ const cartSlice = createSlice({
 				state.totalQuantity += quantity - state.items[id].quantity;
 				state.items[id].quantity = quantity;
 			}
+		},
+		openMenuBurger(state) {
+			state.isOpenMenuBurger = !state.isOpenMenuBurger;
+		},
+		closeMenuBurger(state) {
+			state.isOpenMenuBurger = false;
 		},
 		openSidebar(state) {
 			state.isSidebarOpen = !state.isSidebarOpen;
@@ -89,5 +96,5 @@ const cartSlice = createSlice({
 	},
 });
 
-export const { addItem, removeItem, updateQuantity, openSidebar, closeSidebar, decrementCount, incrementCount, clearCart } = cartSlice.actions;
+export const { addItem, removeItem, updateQuantity, openSidebar, closeSidebar, decrementCount, incrementCount, clearCart, openMenuBurger, closeMenuBurger } = cartSlice.actions;
 export default cartSlice.reducer;

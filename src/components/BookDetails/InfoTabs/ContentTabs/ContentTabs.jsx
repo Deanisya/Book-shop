@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 
 const ContentTabs = ({ activeTab }) => {
 	const { bookDetails, loading } = useSelector(state => state.booksList);
+
 	if (loading) return <p></p>;
-	// if (!bookDetails) return null;
 	if (!bookDetails?.volumeInfo) return <p>Книга не найдена</p>; // Проверяем bookDetails перед деструктуризацией обязательно!
 	const { volumeInfo } = bookDetails;
 	const { description, pageCount, publisher, dimensions, language } = volumeInfo || {};

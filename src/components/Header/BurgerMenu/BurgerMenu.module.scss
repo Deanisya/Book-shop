@@ -1,0 +1,22 @@
+@import '../../../styles/variables.scss';
+.burgerMenu {
+	position: fixed;
+	top: 0;
+	left: -300px;
+	width: 300px;
+	height: 100vh;
+	background: $light-colors-white-light;
+	transition: left 0.3s ease;
+	z-index: 1000;
+	border-left: 1px solid $light-colors-gray-light;
+	display: flex;
+	flex-direction: column;
+	@media (320px <= width <= 768px) {
+		left: -260px;
+		width: 260px;
+	}
+}
+
+.open {
+	left: 0;
+}

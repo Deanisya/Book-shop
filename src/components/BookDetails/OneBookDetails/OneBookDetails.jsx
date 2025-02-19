@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import Counter from '../../common/Counter/Counter';
+import AddInCart from '../../common/AddInCart/AddInCart';
+import MyFavorites from '../../common/MyFavorites/MyFavorites';
 import s from './OneBookDetails.module.scss';
 import BlockMedia from '../../common/BlockMedia/BlockMedia';
-import Counter from '../../common/Counter/Counter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { clearBookDetails, fetchDetailsBooks } from '../../../store/reducers/booksListReducer';
-import MyFavorites from '../../common/MyFavorites/MyFavorites';
-import AddInCart from '../../common/AddInCart/AddInCart';
 
-const OneBookDetails = () => {
+const OneBookDetails = ({ reviewsCount }) => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
-	const { bookDetails, error, loading } = useSelector(state => state.booksList); // books?
+	const { bookDetails, error, loading } = useSelector(state => state.booksList);
 	const { items } = useSelector(state => state.cart);
 
 	useEffect(() => {
@@ -22,14 +22,12 @@ const OneBookDetails = () => {
 		};
 	}, [dispatch, id]);
 
-	if (loading) return <p>Loading...</p>;
+	if (loading) return <p>Загрузка...</p>;
 	if (error) return <p>Ошибка: {error}</p>;
-	if (!bookDetails) return null;
 	if (!bookDetails?.volumeInfo) return <p>Книга не найдена</p>; // Проверяем bookDetails перед деструктуризацией обязательно!
 
 	const { volumeInfo, saleInfo } = bookDetails;
 	const { title, description, authors, categories, publishedDate } = volumeInfo || {};
-
 	const { listPrice } = saleInfo || {};
 
 	const book = {
@@ -122,28 +120,37 @@ const OneBookDetails = () => {
 						</defs>
 					</svg>
 				</div>
-				<span className={s.bookRaitingDescription}>1 customer review</span>
+				<span className={s.bookRaitingDescription}>{reviewsCount} customer review</span>
 			</div>
 			<p className={s.bookDescription}>
 				{shortenTitle(
 					description?.replace(/<\/?[a-zA-Z]+>/gi, '') ||
 						'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, molestiae perferendis sapiente molestias dolores quae? Nostrum voluptates illum harum beatae voluptatum saepe explicabo rem, facilis ab, id culpa aspernatur ex.',
-					300
+					200
 				)}
+				<a className={s.bookDescriptionLink} href='#readmore'>
+					&nbsp;read more
+				</a>
 			</p>
+			<div
+				style={{
+					display: 'flex',
+					gap: '80px',
+					alignItems: 'center',
+					marginBottom: '20px',
+				}}
+			>
+				{' '}
+				{listPrice ? <div className={s.blockAddBookToCart}>{items[book.id]?.quantity > 0 ? <Counter id={id} /> : <AddInCart book={book} addInCartBookDet />}</div> : ''}
+				<div className={s.blockWishlistAndMedia}>
+					<MyFavorites book={items} />
+					<BlockMedia />
+				</div>
+			</div>
 
-			{listPrice ? <div className={s.blockAddBookToCart}>{items[book.id]?.quantity > 0 ? <Counter id={id} /> : <AddInCart book={book} addInCartBookDet />}</div> : ''}
-			<div className={s.blockWishlistAndMedia}>
-				<MyFavorites book={book} />
-				<BlockMedia />
-			</div>
-			<div className={s.blockSku}>
-				<p className={s.sku}>SKU:</p>
-				<span className={s.blockSkuValue}>12</span>
-			</div>
 			<div className={s.blockSku}>
 				<p className={s.sku}>Categories:</p>
-				<span className={s.blockSkuValue}>{categories}</span>
+				<span className={s.blockSkuValue}>{categories ? categories : 'no category'}</span>
 			</div>
 		</div>
 	);
