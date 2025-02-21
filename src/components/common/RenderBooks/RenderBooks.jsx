@@ -8,29 +8,12 @@ import MyFavorites from '../MyFavorites/MyFavorites';
 import AddInCart from '../AddInCart/AddInCart';
 
 function RenderBooks({ books }) {
-	const { loading, error, query, page, category } = useSelector(state => state.booksList);
+	const { loading, error, category } = useSelector(state => state.booksList);
 	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	// Проверяем, есть ли книги в store, если нет, то запускаем fetchBooks
-	// 	if (books.length === 0 && !loading) {
-	// 		dispatch(fetchBooks({ searchQuery: query, category, page }));
-	// 	}
-	// }, [query, category, page, dispatch, books.length, loading]);
-
 	useEffect(() => {
-		// Проверяем, есть ли книги в store, если нет, то запускаем fetchBooks
-		// if (books.length === 0 && !loading) {
 		dispatch(fetchBooks({ category }));
-		// }
 	}, [category, dispatch]);
-
-	// const uniqueBooks = books.reduce((acc, book) => {
-	// 	if (!acc.some(item => item.id === book.id)) {
-	// 		acc.push(book);
-	// 	}
-	// 	return acc;
-	// }, []); ----------------------- появление дубликатов
 
 	if (loading) {
 		return <p>Loading...</p>;

@@ -3,21 +3,24 @@
 	padding-bottom: 34px;
 	border-bottom: 1px solid $light-colors-gray-light;
 	.infoList {
-		// padding-bottom: 39px;
-		height: 66px;
 		border-bottom: 1px solid $light-colors-gray-light;
 		display: flex;
 		list-style: none;
-		gap: 96px;
+		gap: 5vw;
+		padding: 0;
 		.infoListItem {
+			padding: 20px 0;
 			.infoListItemLink {
 				text-decoration: none;
 				font-weight: 400;
-				font-size: 20px;
+				font-size: 18px;
 				line-height: 130%;
 				color: $light-colors-dark-gray-light;
 				&:active {
 					color: $light-colors-black-light;
+				}
+				@media (max-width: 768px) {
+					font-size: 14px;
 				}
 			}
 			.infoListItemLinkActive {
@@ -25,6 +28,10 @@
 				font-size: 20px;
 				line-height: 130%;
 				color: $light-colors-black-light;
+
+				@media (max-width: 768px) {
+					font-size: 16px;
+				}
 			}
 		}
 		.infoListItemActive {

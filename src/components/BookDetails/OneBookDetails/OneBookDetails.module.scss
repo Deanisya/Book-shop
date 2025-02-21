@@ -1,12 +1,19 @@
 @import '../../../styles/variables.scss';
 .oneBookDetails {
-	margin-bottom: 99px;
+	@media (max-width: 768px) {
+		width: 80%;
+		margin: 0 auto;
+	}
 	.bookHeader {
 		font-weight: 400;
 		font-size: 26px;
 		line-height: 135%;
 		color: $light-colors-black-light;
 		margin-bottom: 23px;
+
+		@media (max-width: 768px) {
+			font-size: 18px;
+		}
 	}
 	.bookPrice {
 		display: inline-block;
@@ -15,7 +22,10 @@
 		line-height: 130%;
 		text-transform: capitalize;
 		color: $light-colors-accent-light;
-		margin-bottom: 64px;
+		margin-bottom: 20px;
+		@media (max-width: 768px) {
+			font-size: 14px;
+		}
 	}
 	.bookRaiting {
 		display: flex;
@@ -31,6 +41,10 @@
 			font-size: 16px;
 			line-height: 169%;
 			color: $light-colors-dark-gray-light;
+
+			@media (max-width: 768px) {
+				font-size: 12px;
+			}
 		}
 	}
 	.bookDescription {
@@ -38,35 +52,77 @@
 		font-size: 16px;
 		line-height: 169%;
 		color: $light-colors-dark-gray-light;
-		margin-bottom: 48px;
+		margin-bottom: 20px;
+
+		@media (max-width: 768px) {
+			font-size: 14px;
+		}
+
+		.bookDescriptionLink {
+			color: #000;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 	.blockAddBookToCart {
 		display: flex;
-		margin-bottom: 40px;
-	}
-	.blockWishlistAndMedia {
-		display: flex;
-		margin-bottom: 37px;
-		.headerIconWishlist {
-			padding-right: 40px;
-			border-right: 1px solid $light-colors-gray-light;
+
+		.btnAddBookToCart {
+			border: 1px solid $light-colors-black-light;
+			border-radius: 4px;
+			height: 53px;
+			background-color: transparent;
+			cursor: pointer;
 		}
 	}
+	.bookIconsBlock {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 80px;
+		align-items: center;
+		margin-bottom: 20px;
+		@media (max-width: 845px) {
+			gap: 20px;
+		}
+		.blockWishlistAndMedia {
+			display: flex;
+			gap: 20px;
+			.headerIconWishlist {
+				padding-right: 40px;
+				border-right: 1px solid $light-colors-gray-light;
+			}
+		}
+	}
+
 	.blockSku {
 		display: flex;
 		gap: 16px;
 		margin-bottom: 6px;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			gap: 6px;
+		}
 		.sku {
 			font-weight: 400;
 			font-size: 16px;
 			line-height: 169%;
 			color: $light-colors-black-light;
+			@media (max-width: 768px) {
+				margin: 0;
+			}
 		}
 		.blockSkuValue {
 			font-weight: 400;
 			font-size: 16px;
 			line-height: 169%;
 			color: $light-colors-dark-gray-light;
+
+			@media (max-width: 768px) {
+				font-size: 12px;
+			}
 		}
 	}
 }

@@ -1,12 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
 import RenderBooks from '../../common/RenderBooks/RenderBooks';
+import Pagination from './Pagination/Pagination';
 
 function ShoppingBooks() {
-	const { books } = useSelector(state => state.booksList);
+	const { books, loading } = useSelector(state => state.booksList);
 
-	return <RenderBooks books={books} />;
+	return (
+		<>
+			<RenderBooks books={books} />
+			{loading || books.length === 0 ? null : <Pagination />};
+		</>
+	);
 }
 
 export default ShoppingBooks;

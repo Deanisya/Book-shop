@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import s from './Account.module.scss';
 import Title from '../common/Title/Title';
-import Input from '../common/Input/Input';
-import ButtonForm from '../common/ButtonForm/ButtonForm';
 import clsx from 'clsx';
 import Register from './Register/Register';
-import { Link } from 'react-router-dom';
 import Login from './Login/Login';
 
 const Account = () => {

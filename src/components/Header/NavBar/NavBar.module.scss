@@ -9,6 +9,11 @@
 		margin: 0;
 		margin-right: 48px;
 		height: 100%;
+		@media (min-width: 991px) {
+			li:last-child {
+				display: none;
+			}
+		}
 		.navItem {
 			display: flex;
 			align-items: center;
@@ -17,6 +22,9 @@
 		}
 		.navItemActive {
 			border-bottom: 1px solid $light-colors-black-light;
+			@media (max-width: 991px) {
+				border: none;
+			}
 		}
 		.navLink {
 			text-decoration: none;

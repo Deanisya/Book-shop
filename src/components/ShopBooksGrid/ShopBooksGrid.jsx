@@ -24,7 +24,7 @@ function ShopBooksGrid() {
 				<FilterSection />
 			</div>
 
-			<div>
+			<div style={{ minHeight: '65vh' }}>
 				<ShoppingBooks />
 			</div>
 		</div>

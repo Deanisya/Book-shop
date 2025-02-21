@@ -22,7 +22,6 @@ export default function () {
 	}, [isSidebarOpen]);
 
 	const items = useSelector(state => state.cart.items);
-	// const cart = useSelector(state => state.cart);
 	const dispatch = useDispatch();
 
 	return (
@@ -51,7 +50,6 @@ export default function () {
 					</Link>
 				</div>
 			</div>
-			{/* <Cart /> */}
 		</>
 	);
 }

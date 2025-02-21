@@ -6,7 +6,7 @@ import { setInStock, setPriceRange } from '../../../store/reducers/booksListRedu
 
 export default function RangeSlider() {
 	const dispatch = useDispatch();
-	const { minPrice, maxPrice, inStock } = useSelector(state => state.booksList);
+	const { minPrice, maxPrice } = useSelector(state => state.booksList);
 	const [range, setRange] = useState([minPrice, maxPrice]);
 
 	// Синхронизируем локальное состояние с Redux при изменении глобальных значений
@@ -32,7 +32,7 @@ export default function RangeSlider() {
 					getAriaLabel={() => 'Price range'}
 					value={range}
 					onChange={handleChange}
-					onChangeCommitted={handleChangeCommitted} // ✅ Отправляем в Redux только при отпускании
+					onChangeCommitted={handleChangeCommitted} //  Отправляем в Redux только при отпускании
 					valueLabelDisplay='off'
 					sx={{
 						color: '#565656',

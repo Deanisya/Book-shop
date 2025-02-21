@@ -16,27 +16,27 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 const Dashboard = () => {
 	const [activeTab, setActiveTab] = useState('tab1');
-	const handleClickTab1 = (e) => {
+	const handleClickTab1 = e => {
 		e.preventDefault();
 		setActiveTab('tab1');
 	};
-	const handleClickTab2 = (e) => {
+	const handleClickTab2 = e => {
 		e.preventDefault();
 		setActiveTab('tab2');
 	};
-	const handleClickTab3 = (e) => {
+	const handleClickTab3 = e => {
 		e.preventDefault();
 		setActiveTab('tab3');
 	};
-	const handleClickTab4 = (e) => {
+	const handleClickTab4 = e => {
 		e.preventDefault();
 		setActiveTab('tab4');
 	};
-	const handleClickTab5 = (e) => {
+	const handleClickTab5 = e => {
 		e.preventDefault();
 		setActiveTab('tab5');
 	};
-	const handleClickTab6 = (e) => {
+	const handleClickTab6 = e => {
 		e.preventDefault();
 		setActiveTab('tab6');
 	};
@@ -74,78 +74,90 @@ const Dashboard = () => {
 						<li
 							className={clsx(styles.dashboardTabsListItem, {
 								[styles.dashboardTabsListItemActive]: activeTab === 'tab1',
-							})}>
+							})}
+						>
 							<a
 								onClick={handleClickTab1}
 								className={clsx(styles.dashboardTabsListLink, {
 									[styles.dashboardTabsListLinkActive]: activeTab === 'tab1',
 								})}
-								href='#'>
+								href='#'
+							>
 								Dashboard
 							</a>
 						</li>
 						<li
 							className={clsx(styles.dashboardTabsListItem, {
 								[styles.dashboardTabsListItemActive]: activeTab === 'tab2',
-							})}>
+							})}
+						>
 							<a
 								onClick={handleClickTab2}
 								className={clsx(styles.dashboardTabsListLink, {
 									[styles.dashboardTabsListLinkActive]: activeTab === 'tab2',
 								})}
-								href='#'>
+								href='#'
+							>
 								Orders
 							</a>
 						</li>
 						<li
 							className={clsx(styles.dashboardTabsListItem, {
 								[styles.dashboardTabsListItemActive]: activeTab === 'tab3',
-							})}>
+							})}
+						>
 							<a
 								onClick={handleClickTab3}
 								className={clsx(styles.dashboardTabsListLink, {
 									[styles.dashboardTabsListLinkActive]: activeTab === 'tab3',
 								})}
-								href='#'>
+								href='#'
+							>
 								Downloads
 							</a>
 						</li>
 						<li
 							className={clsx(styles.dashboardTabsListItem, {
 								[styles.dashboardTabsListItemActive]: activeTab === 'tab4',
-							})}>
+							})}
+						>
 							<a
 								onClick={handleClickTab4}
 								className={clsx(styles.dashboardTabsListLink, {
 									[styles.dashboardTabsListLinkActive]: activeTab === 'tab4',
 								})}
-								href='#'>
+								href='#'
+							>
 								Addresses
 							</a>
 						</li>
 						<li
 							className={clsx(styles.dashboardTabsListItem, {
 								[styles.dashboardTabsListItemActive]: activeTab === 'tab5',
-							})}>
+							})}
+						>
 							<a
 								onClick={handleClickTab5}
 								className={clsx(styles.dashboardTabsListLink, {
 									[styles.dashboardTabsListLinkActive]: activeTab === 'tab5',
 								})}
-								href='#'>
+								href='#'
+							>
 								Account details
 							</a>
 						</li>
 						<li
 							className={clsx(styles.dashboardTabsListItem, {
 								[styles.dashboardTabsListItemActive]: activeTab === 'tab6',
-							})}>
+							})}
+						>
 							<a
 								onClick={handleClickTab6}
 								className={clsx(styles.dashboardTabsListLink, {
 									[styles.dashboardTabsListLinkActive]: activeTab === 'tab6',
 								})}
-								href='#'>
+								href='#'
+							>
 								Logout
 							</a>
 						</li>
@@ -156,10 +168,7 @@ const Dashboard = () => {
 				{activeTab === 'tab1' && (
 					<div>
 						<p>Hello Vitatheme (not Vitatheme? Log out)</p>
-						<p>
-							From your account dashboard you can view your recent orders, manage your shipping and
-							billing addresses, and edit your password and account details.
-						</p>
+						<p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
 					</div>
 				)}
 				{activeTab === 'tab2' && (
@@ -264,7 +273,6 @@ const Dashboard = () => {
 											BROWSE PRODUCT
 										</Link>
 									</div>
-									{/* <div className={classes.orderAlertTimer}>{timeLeft}</div> */}
 								</div>
 							) : (
 								<div className={styles.orderTable}>
@@ -352,9 +360,7 @@ const Dashboard = () => {
 				)}
 				{activeTab === 'tab4' && (
 					<div className={styles.addresses}>
-						<p className={styles.addressesInfo}>
-							The following addresses will be used on the checkout page by default.
-						</p>
+						<p className={styles.addressesInfo}>The following addresses will be used on the checkout page by default.</p>
 						<div className={styles.addressesWrapper}>
 							{view ? (
 								<div className={styles.checkoutDetailsFormInfo}>
@@ -366,7 +372,8 @@ const Dashboard = () => {
 											marginLeft: 'auto',
 											marginRight: '30px',
 										}}
-										onClick={() => setView(false)}>
+										onClick={() => setView(false)}
+									>
 										Close
 									</button>
 									<div className={styles.checkoutDetailsFormName}>
@@ -375,12 +382,7 @@ const Dashboard = () => {
 									</div>
 									<SelectLabels />
 									<Input type='text' placeholder='Street Address *' required='required' />
-									<Input
-										pattern='^\d+(\.\d{1,2})?$'
-										type='number'
-										placeholder='Postcode / ZIP *'
-										required='required'
-									/>
+									<Input pattern='^\d+(\.\d{1,2})?$' type='number' placeholder='Postcode / ZIP *' required='required' />
 									<Input type='text' placeholder='Town / City *' required='required' />
 									<Input type='number' placeholder='Phone *' required='required' />
 									<Input type='email' placeholder='Email *' required='required' />
@@ -394,9 +396,7 @@ const Dashboard = () => {
 									<button onClick={() => setView(!view)} className={styles.addressesBtn}>
 										ADD
 									</button>
-									<p className={styles.addressesNotYet}>
-										You have not set up this type of address yet.
-									</p>
+									<p className={styles.addressesNotYet}>You have not set up this type of address yet.</p>
 								</div>
 							)}
 							{view2 ? (
@@ -409,7 +409,8 @@ const Dashboard = () => {
 											marginLeft: 'auto',
 											marginRight: '30px',
 										}}
-										onClick={() => setView2(false)}>
+										onClick={() => setView2(false)}
+									>
 										Close
 									</button>
 									<div className={styles.checkoutDetailsFormName}>
@@ -418,12 +419,7 @@ const Dashboard = () => {
 									</div>
 									<SelectLabels />
 									<Input type='text' placeholder='Street Address *' required='required' />
-									<Input
-										pattern='^\d+(\.\d{1,2})?$'
-										type='number'
-										placeholder='Postcode / ZIP *'
-										required='required'
-									/>
+									<Input pattern='^\d+(\.\d{1,2})?$' type='number' placeholder='Postcode / ZIP *' required='required' />
 									<Input type='text' placeholder='Town / City *' required='required' />
 									<Input type='number' placeholder='Phone *' required='required' />
 									<Input type='email' placeholder='Email *' required='required' />
@@ -437,9 +433,7 @@ const Dashboard = () => {
 									<button onClick={() => setView2(!view2)} className={styles.addressesBtn}>
 										ADD
 									</button>
-									<p className={styles.addressesNotYet}>
-										You have not set up this type of address yet.
-									</p>
+									<p className={styles.addressesNotYet}>You have not set up this type of address yet.</p>
 								</div>
 							)}
 						</div>
@@ -452,21 +446,11 @@ const Dashboard = () => {
 							<Input placeholder='First name *' required='required' />
 							<Input placeholder='last name *' required='required' />
 							<Input placeholder='Display name *' required='required' />
-							<p className={styles.displayDescription}>
-								This will be how your name will be displayed in the account section and in reviews.
-							</p>
+							<p className={styles.displayDescription}>This will be how your name will be displayed in the account section and in reviews.</p>
 							<Input type='email' placeholder='Email *' required='required' />
 							<h2 className={styles.accountDetailsFormChangePasswordTitle}>Password change</h2>
-							<Input
-								type='password'
-								placeholder='Current password (leave blank to leave unchanged)'
-								required='required'
-							/>
-							<Input
-								type='password'
-								placeholder='New password (leave blank to leave unchanged)'
-								required='required'
-							/>
+							<Input type='password' placeholder='Current password (leave blank to leave unchanged)' required='required' />
+							<Input type='password' placeholder='New password (leave blank to leave unchanged)' required='required' />
 							<Input type='password' placeholder='Confirm new password' required='required' />
 							<ButtonForm width='100%' title='SAVE ADDRESS' />
 						</form>

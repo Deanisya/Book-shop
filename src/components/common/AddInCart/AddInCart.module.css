@@ -22,7 +22,7 @@
 .addInCartBookDet {
 	border: 1px solid #000;
 	border-radius: 4px;
-	width: 30%;
+	padding: 0 10px;
 	height: 53px;
 	background-color: transparent;
 }
@@ -40,4 +40,12 @@
 }
 .formBtn:hover {
 	transform: scale(1.01);
+}
+@media (320px <= width <= 991px) {
+	.formBtn {
+		font-size: 12px;
+	}
+	.addInCartShop {
+		opacity: 1;
+	}
 }

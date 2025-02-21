@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Counter from '../../common/Counter/Counter';
 import AddInCart from '../../common/AddInCart/AddInCart';
 import MyFavorites from '../../common/MyFavorites/MyFavorites';
@@ -34,6 +34,7 @@ const OneBookDetails = ({ reviewsCount }) => {
 		id,
 		volumeInfo,
 		saleInfo,
+		title,
 	};
 
 	function shortenTitle(title, maxLength) {
@@ -41,7 +42,7 @@ const OneBookDetails = ({ reviewsCount }) => {
 			return title.slice(0, maxLength) + '...';
 		}
 		return title;
-	} // функция чтобы укоротить слишком длинный заголовок книги
+	} // функция чтобы укоротить слишком длинный заголовок книги, в некоторых местах использую просто slice, но минус что нет проверки на длину слова
 	return (
 		<div className={s.oneBookDetails}>
 			<h1 className={s.bookHeader}>{title}</h1>
@@ -120,7 +121,7 @@ const OneBookDetails = ({ reviewsCount }) => {
 						</defs>
 					</svg>
 				</div>
-				<span className={s.bookRaitingDescription}>{reviewsCount} customer review</span>
+				<span className={s.bookRaitingDescription}>{reviewsCount}2 customer review</span>
 			</div>
 			<p className={s.bookDescription}>
 				{shortenTitle(
@@ -132,18 +133,11 @@ const OneBookDetails = ({ reviewsCount }) => {
 					&nbsp;read more
 				</a>
 			</p>
-			<div
-				style={{
-					display: 'flex',
-					gap: '80px',
-					alignItems: 'center',
-					marginBottom: '20px',
-				}}
-			>
+			<div className={s.bookIconsBlock}>
 				{' '}
 				{listPrice ? <div className={s.blockAddBookToCart}>{items[book.id]?.quantity > 0 ? <Counter id={id} /> : <AddInCart book={book} addInCartBookDet />}</div> : ''}
 				<div className={s.blockWishlistAndMedia}>
-					<MyFavorites book={items} />
+					<MyFavorites book={book} />
 					<BlockMedia />
 				</div>
 			</div>

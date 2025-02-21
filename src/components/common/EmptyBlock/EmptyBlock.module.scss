@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+
+.emptyBlock {
+	color: $light-colors-gray-light;
+	font-size: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60vh;
+	@media (320px <= width <= 768px) {
+		font-size: 25px;
+	}
+}

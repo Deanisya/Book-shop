@@ -6,7 +6,7 @@ const cartSlice = createSlice({
 	name: 'cart',
 	initialState: {
 		items: {}, // Список товаров, где ключ — id товара, значение — { name, price, quantity }
-		totalQuantity: 0, // Общее количество товаров
+		totalQuantity: 0,
 		isSidebarOpen: false,
 		isOpenMenuBurger: false,
 		totalPrice: 0,
@@ -21,16 +21,12 @@ const cartSlice = createSlice({
 
 			// Проверяем, если товар уже есть в корзине
 			if (state.items[id]) {
-				// Увеличиваем количество товара в корзине
 				state.items[id].quantity += 1;
-				// Увеличиваем общее количество товаров
 				state.totalQuantity += 1;
 			} else {
-				// Если товара нет в корзине, добавляем его с количеством 1
 				state.items[id] = { img, authors, title, price, quantity: 1 };
 				state.totalQuantity += 1;
 			}
-			// Обновляем общую стоимость
 			state.totalPrice += price;
 		},
 		removeItem(state, action) {
@@ -89,8 +85,8 @@ const cartSlice = createSlice({
 		clearCart(state) {
 			if (state.items && typeof state.items === 'object') {
 				state.totalQuantity = 0;
-				state.items = {}; // Присваиваем пустой объект
-				state.totalPrice = 0; // Сбрасываем общую стоимость на ноль напрямую
+				state.items = {};
+				state.totalPrice = 0;
 			}
 		},
 	},

@@ -31,14 +31,7 @@ function UncontrolledExample() {
 	};
 
 	return (
-		<Carousel
-			controls={false}
-			indicators={true}
-			interval={null} // Отключаем автоматическую прокрутку
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
-			pause={paused ? 'hover' : false} // Остановка карусели при наведении
-		>
+		<Carousel controls={false} indicators={true} interval={3000} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} pause={paused ? 'hover' : false}>
 			{slider.id.map((id, index) => (
 				<Carousel.Item key={id}>
 					<ExampleCarouselImage id={id} title={slider.title[index]} image={slider.image[index]} description={slider.description[index]} />

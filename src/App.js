@@ -13,7 +13,8 @@ import Cart from './components/Cart/Cart';
 import Checkout from './components/Cart/Checkout/Checkout';
 import Order from './components/Cart/Checkout/Order/Order';
 import BurgerMenu from './components/Header/BurgerMenu/BurgerMenu';
-
+import OrderTrack from './components/Cart/Checkout/Order/OrderTrack/OrderTrack';
+import Dashboard from './components/Account/Dashboard/Dashboard';
 import PopularBooks from './components//PopularBooks/PopularBooks';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ShopBooksGrid from './components/ShopBooksGrid/ShopBooksGrid';
@@ -50,10 +51,12 @@ function App() {
 					<Route path='blog' element={<BookDetails />} />
 					<Route path='cart' element={<Cart />} />
 					<Route path='checkout' element={<Checkout />} />
-					<Route path='order' element={<Order />} />
-					<Route path='contacts' element={<Contacts />} />
 					<Route path='wishlist' element={<Wishlist />} />
 					<Route path='account' element={<Account />} />
+					<Route path='order' element={<Order />} />
+					<Route path='ordertrack' element={<OrderTrack />} />
+					<Route path='contacts' element={<Contacts />} />
+					<Route path='dashboard' element={<Dashboard />} />
 					<Route path='password' element={<Password />} />
 					<Route path='privacy' element={<PrivacyPolicy />} />
 					<Route path='*' element={<NotFound />} />

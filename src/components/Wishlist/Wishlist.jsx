@@ -7,18 +7,23 @@ import { removeFromFavorites } from '../../store/reducers/booksListReducer';
 import { Link } from 'react-router-dom';
 import AddInCart from '../common/AddInCart/AddInCart';
 import { useMediaQuery } from '@mui/material';
+import EmptyBlock from '../common/EmptyBlock/EmptyBlock';
 
 const Wishlist = () => {
 	const favorites = useSelector(state => state.booksList.favorites);
+	console.log(favorites);
+
 	const isMobile = useMediaQuery('(max-width:768px)');
 	const dispatch = useDispatch();
 
 	const handleRemoveFromFavorites = id => {
+		console.log(`id поиск книги: ${id}`);
 		dispatch(removeFromFavorites(id));
 	};
 	return (
-		<div className={styles.wishlist}>
+		<div className={styles.blockWishlist}>
 			<Title title='Your Wishlist' />
+
 			{favorites.length >= 1 ? (
 				<>
 					<table>
@@ -59,7 +64,7 @@ const Wishlist = () => {
 						<ul className={styles.cardList}>
 							{favorites.map(book => (
 								<li className={styles.card}>
-									<div className={styles.imgBlockMobile} title={book.volumeInfo.title}>
+									<div className={styles.imgBlockMobile} title={book?.volumeInfo?.title}>
 										<img className={styles.imgMobile} src={book.volumeInfo.imageLinks?.thumbnail || `${book1}`} alt={book.volumeInfo.title || 'No name'} />
 										<div className={styles.descrBook}>
 											<Link to={`/book/${book.id}`} className={styles.seeDetails}>
@@ -85,7 +90,7 @@ const Wishlist = () => {
 					)}
 				</>
 			) : (
-				<div>Your wishlist is empty</div>
+				<EmptyBlock title='Your wishlist is empty...' />
 			)}
 		</div>
 	);

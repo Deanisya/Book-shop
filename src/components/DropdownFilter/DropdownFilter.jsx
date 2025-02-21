@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../../store/reducers/booksListReducer';
 
 export default function SelectLabels() {
-	// const [sort, setSort] = React.useState('');
-	// const [category, setCategoryState] = React.useState('');
 	const category = useSelector(state => state.booksList.category);
 	const categories = ['Art', 'History', 'Fiction', 'Non-fiction', 'Travel', 'Romance', 'Horror', 'Psychology', 'Philosophy', 'Business', 'Cooking', 'Poetry'];
 
@@ -26,20 +24,21 @@ export default function SelectLabels() {
 					onChange={handleChange}
 					displayEmpty
 					inputProps={{ 'aria-label': 'Without label' }}
-					input={
-						<InputBase
-							sx={{
-								'&:focus': {
-									outline: 'none', // Убираем контур при фокусе
-									boxShadow: 'none', // Убираем тень при фокусе
-								},
-								// Дополнительные стили для InputBase
-								'& .MuiInputBase-input': {
-									padding: '10px',
-								},
-							}}
-						/>
-					}
+					sx={{
+						'& .MuiOutlinedInput-notchedOutline': {
+							border: 'none',
+						},
+						'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+							border: 'none',
+						},
+						'&.Mui-focused': {
+							outline: 'none',
+							boxShadow: 'none',
+						},
+						'& .MuiInputBase-input': {
+							padding: '10px',
+						},
+					}}
 				>
 					<MenuItem value=''>Categories</MenuItem>
 					{categories.map((cat, index) => (

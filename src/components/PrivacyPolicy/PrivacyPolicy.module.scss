@@ -1,14 +1,19 @@
 @import '../../styles/variables.scss';
 .privacy {
-	margin: 96px 0;
+	padding-top: 100px;
+	padding-bottom: 30px;
 	gap: 39px;
 	display: flex;
 	justify-content: center;
 	.privacyWrapper {
 		display: flex;
 		flex-direction: column;
-		gap: 39px;
-		width: 60%;
+		gap: 29px;
+		padding: 20px 100px;
+
+		@media (320px <= width <= 768px) {
+			padding: 20px;
+		}
 
 		.blockDescription {
 			display: flex;

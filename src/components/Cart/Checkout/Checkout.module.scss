@@ -4,6 +4,12 @@
 	.checkoutLogin {
 		margin-top: 64px;
 		margin-bottom: 24px;
+
+		@media (max-width: 768px) {
+			text-align: center;
+			margin-top: 40px;
+		}
+
 		.checkoutLoginTitle {
 			font-weight: 400;
 			font-size: 16px;
@@ -27,6 +33,13 @@
 		padding-bottom: 40px;
 		border: 1px solid $light-colors-gray-light;
 		margin-bottom: 48px;
+
+		@media (max-width: 768px) {
+			width: 90%;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+
 		.checkoutCouponTitle {
 			font-weight: 400;
 			font-size: 16px;
@@ -37,6 +50,11 @@
 		.checkoutCouponForm {
 			display: flex;
 			gap: 28px;
+
+			@media (max-width: 768px) {
+				flex-direction: column;
+				align-items: center;
+			}
 		}
 	}
 	.checkoutOrderDetails {
@@ -45,7 +63,15 @@
 		column-gap: 88px;
 		margin-bottom: 100px;
 
+		@media (max-width: 768px) {
+			grid-template-columns: repeat(1, 1fr);
+			justify-items: center;
+		}
+
 		.checkoutDetails {
+			@media (max-width: 768px) {
+				width: 90%;
+			}
 			.checkoutDetailsTitle {
 				font-weight: 400;
 				font-size: 26px;
@@ -54,11 +80,18 @@
 				margin-bottom: 27px;
 			}
 			.checkoutDetailsForm {
+				@media (max-width: 768px) {
+					margin-bottom: 60px;
+				}
 				.checkoutDetailsFormInfo {
 					display: flex;
 					flex-direction: column;
 					gap: 37px;
 					margin-bottom: 36px;
+
+					@media (max-width: 768px) {
+						gap: 15px;
+					}
 					.checkoutDetailsFormName {
 						display: flex;
 						gap: 40px;
@@ -66,6 +99,7 @@
 				}
 				.checkoutDetailsFormBlockCheckbox {
 					margin-bottom: 37px;
+
 					.checkoutDetailsFormCheckbox {
 						display: flex;
 						align-items: center;
@@ -82,12 +116,19 @@
 			}
 		}
 		.checkoutOrder {
+			@media (max-width: 768px) {
+				width: 90%;
+			}
 			.checkoutOrderTitle {
 				font-weight: 400;
 				font-size: 26px;
 				line-height: 135%;
 				color: $light-colors-black-light;
 				margin-bottom: 27px;
+
+				@media (max-width: 768px) {
+					font-size: 18px;
+				}
 			}
 			.checkoutOrderBlock {
 				display: flex;
@@ -96,6 +137,10 @@
 				padding: 39px 59px;
 				padding-bottom: 48px;
 				background: $light-colors-light-gray-light;
+
+				@media (max-width: 768px) {
+					padding: 40px;
+				}
 				.checkoutOrderHeader {
 					font-weight: 400;
 					font-size: 16px;
@@ -104,6 +149,9 @@
 					display: flex;
 					justify-content: space-between;
 					border-bottom: 1px solid $light-colors-gray-light;
+					@media (max-width: 768px) {
+						font-size: 14px;
+					}
 				}
 				.checkoutOrderMiddle {
 					border-bottom: 1px solid $light-colors-gray-light;
@@ -117,17 +165,27 @@
 						font-size: 16px;
 						line-height: 169%;
 						color: $light-colors-black-light;
+						@media (max-width: 768px) {
+							font-size: 14px;
+						}
 					}
 					.checkoutOrderBlockListSubTitle {
 						font-weight: 400;
-						font-size: 16px;
+						font-size: 14px;
 						line-height: 169%;
 						color: $light-colors-dark-gray-light;
+						@media (max-width: 768px) {
+							font-size: 12px;
+						}
 					}
 				}
 				.checkoutOrderBlockRadio {
 					margin-top: 61px;
 					margin-bottom: 45px;
+					@media (max-width: 768px) {
+						margin-top: 0px;
+						margin-bottom: 20px;
+					}
 				}
 			}
 		}

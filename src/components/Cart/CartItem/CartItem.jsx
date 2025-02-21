@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
 import styles from './CartItem.module.scss';
-import { decrementCount, incrementCount, removeItem } from '../../../store/reducers/cartReducer';
+import { removeItem } from '../../../store/reducers/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import Counter from '../../common/Counter/Counter';
 
 const CartItem = ({ item, id }) => {
 	const dispatch = useDispatch();
-	// const itemCounter = useSelector(state => state.cart.items[id]); // Получаем текущий товар из Redux
 	const handleRemove = () => {
 		dispatch(removeItem(id));
 	};
-
-	// const handleDecrementCount = () => {
-	// 	dispatch(decrementCount({ id }));
-	// };
-
-	// const handleIncrementCount = () => {
-	// 	dispatch(incrementCount({ id }));
-	// };
 
 	if (!item) return null; // Если товара нет, не рендерим ничего
 
@@ -30,16 +21,6 @@ const CartItem = ({ item, id }) => {
 					<p className={styles.cartItemSubTitle}>{item.authors}</p>
 					<p className={styles.cartItemPrice}>{item ? item.quantity * item.price : 0} $</p>
 				</div>
-				{/* <div className={styles.cartItemTotalQuantity}>
-					<span className={styles.cartItemTotalQuantityTitle}>QTY:</span>
-					<button className={styles.cartItemTotalQuantityBtnMinusPlus} onClick={handleDecrementCount}>
-						-
-					</button>
-					<span className={styles.cartItemTotalQuantityCount}>{itemCounter.quantity}</span>
-					<button className={styles.cartItemTotalQuantityBtnMinusPlus} onClick={handleIncrementCount}>
-						+
-					</button>
-				</div> */}
 				<Counter id={id} />
 			</div>
 			<button className={styles.cartItemBtn} onClick={handleRemove}>

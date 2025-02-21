@@ -6,6 +6,8 @@ import { clearCart, decrementCount, incrementCount, removeItem } from '../../sto
 import Title from '../common/Title/Title';
 import ButtonForm from '../common/ButtonForm/ButtonForm';
 import { Link } from 'react-router-dom';
+import EmptyBlock from '../common/EmptyBlock/EmptyBlock';
+import Counter from '../common/Counter/Counter';
 
 const Cart = () => {
 	const { items, totalPrice } = useSelector(state => state.cart);
@@ -14,17 +16,8 @@ const Cart = () => {
 	const handleRemove = id => {
 		dispatch(removeItem(id));
 	};
-
 	const handleClearCart = () => {
 		dispatch(clearCart());
-	};
-
-	const handleDecrementCount = id => {
-		dispatch(decrementCount({ id }));
-	};
-
-	const handleIncrementCount = id => {
-		dispatch(incrementCount({ id }));
 	};
 
 	return (
@@ -32,12 +25,11 @@ const Cart = () => {
 			<Title title='Shopping Cart' />
 			<div className={styles.cartItems}>
 				{Object.keys(items).length === 0 ? (
-					<div className={styles.emptyCart}>Cart is empty...</div>
+					<EmptyBlock title='Cart is empty...' />
 				) : (
 					<div className={styles.cartItemWrapper}>
 						{Object.entries(items).map(([id, item]) => (
 							<div key={id} className={styles.cartItem}>
-								{/* <div className={styles.cartItemInfo}> */}
 								<img className={styles.cartItemImg} src={item.img} alt='img_01' />
 								<div className={styles.cartItemMainInfo}>
 									<div>
@@ -45,23 +37,14 @@ const Cart = () => {
 										<p className={styles.cartItemSubTitle}>{item.author}</p>
 									</div>
 									<div className={styles.cartItemInfoPrice}>
-										<div className={styles.counterAddBookToCart}>
-											<button className={styles.counterMinus} onClick={() => handleDecrementCount(id)}>
-												-
-											</button>
-											<span className={styles.count}>{item.quantity}</span>
-											<button className={styles.counterPlus} onClick={() => handleIncrementCount(id)}>
-												+
-											</button>
-										</div>
+										<Counter id={id} />
 										<p className={styles.cartItemPrice}>{item ? item.price * item.quantity : 0} $</p>
 									</div>
 								</div>
-								{/* </div> */}
 
 								<button className={styles.cartItemBtn} onClick={() => handleRemove(id)}>
 									<svg width='12' height='12' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<path d='M1 1.09172L6.90828 7M1 6.90828L6.90828 1' stroke='black' stroke-width='1.5' />
+										<path d='M1 1.09172L6.90828 7M1 6.90828L6.90828 1' stroke='black' strokeWidth='1.5' />
 									</svg>
 								</button>
 							</div>

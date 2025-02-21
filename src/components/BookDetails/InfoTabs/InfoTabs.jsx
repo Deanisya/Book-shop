@@ -3,62 +3,41 @@ import s from './InfoTabs.module.scss';
 import ContentTabs from './ContentTabs/ContentTabs';
 import clsx from 'clsx';
 
+const tabs = [
+	{ id: 'tab1', label: 'Description' },
+	{ id: 'tab2', label: 'Additional information' },
+	{ id: 'tab3', label: 'Reviews (0)' },
+];
+
 const InfoTabs = () => {
 	const [activeTab, setActiveTab] = useState('tab1');
-	const handleClickTab1 = (e) => {
+
+	const handleTabClick = (e, tabId) => {
 		e.preventDefault();
-		setActiveTab('tab1');
+		setActiveTab(tabId);
 	};
-	const handleClickTab2 = (e) => {
-		e.preventDefault();
-		setActiveTab('tab2');
-	};
-	const handleClickTab3 = (e) => {
-		e.preventDefault();
-		setActiveTab('tab3');
-	};
+
 	return (
 		<div className={s.infoTabs}>
 			<ul className={s.infoList}>
-				<li
-					className={clsx(s.infoListItem, {
-						[s.infoListItemActive]: activeTab === 'tab1',
-					})}>
-					<a
-						onClick={handleClickTab1}
-						className={clsx(s.infoListItemLink, {
-							[s.infoListItemLinkActive]: activeTab === 'tab1',
+				{tabs.map(tab => (
+					<li
+						key={tab.id}
+						className={clsx(s.infoListItem, {
+							[s.infoListItemActive]: activeTab === tab.id,
 						})}
-						href='#'>
-						Description
-					</a>
-				</li>
-				<li
-					className={clsx(s.infoListItem, {
-						[s.infoListItemActive]: activeTab === 'tab2',
-					})}>
-					<a
-						onClick={handleClickTab2}
-						className={clsx(s.infoListItemLink, {
-							[s.infoListItemLinkActive]: activeTab === 'tab2',
-						})}
-						href='#'>
-						Aditional information
-					</a>
-				</li>
-				<li
-					className={clsx(s.infoListItem, {
-						[s.infoListItemActive]: activeTab === 'tab3',
-					})}>
-					<a
-						onClick={handleClickTab3}
-						className={clsx(s.infoListItemLink, {
-							[s.infoListItemLinkActive]: activeTab === 'tab3',
-						})}
-						href='#'>
-						Reviews (0)
-					</a>
-				</li>
+					>
+						<a
+							onClick={e => handleTabClick(e, tab.id)}
+							className={clsx(s.infoListItemLink, {
+								[s.infoListItemLinkActive]: activeTab === tab.id,
+							})}
+							href='#'
+						>
+							{tab.label}
+						</a>
+					</li>
+				))}
 			</ul>
 			<ContentTabs activeTab={activeTab} />
 		</div>

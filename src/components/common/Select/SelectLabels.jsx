@@ -7,7 +7,7 @@ import { InputBase } from '@mui/material';
 export default function SelectLabels() {
 	const [age, setAge] = React.useState('');
 
-	const handleChange = (event) => {
+	const handleChange = event => {
 		setAge(event.target.value);
 	};
 
@@ -24,16 +24,16 @@ export default function SelectLabels() {
 						<InputBase
 							sx={{
 								'&:focus': {
-									outline: 'none', // Убираем контур при фокусе
-									boxShadow: 'none', // Убираем тень при фокусе
+									outline: 'none',
+									boxShadow: 'none',
 								},
-								// Дополнительные стили для InputBase
 								'& .MuiInputBase-input': {
 									padding: '10px',
 								},
 							}}
 						/>
-					}>
+					}
+				>
 					<MenuItem value=''>Country</MenuItem>
 					<MenuItem value={10}>Russia</MenuItem>
 					<MenuItem value={20}>China</MenuItem>

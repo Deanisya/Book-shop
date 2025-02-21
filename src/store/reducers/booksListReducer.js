@@ -14,8 +14,7 @@ const initialState = {
 	isSearching: false,
 	category: '',
 	favorites: [],
-	page: 0, // ?
-	totalPages: 0, // Количество страниц для пагинации ?
+	page: 0,
 	inStock: false,
 	maxPrice: 15000,
 	minPrice: 0,
@@ -30,9 +29,10 @@ export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', asy
 
 // 🔹 Асинхронный экшен для поиска книг
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async ({ searchQuery, category, page = 0 }) => {
-	const query = searchQuery ? searchQuery : category ? category : 'history+popular'; // Если searchQuery пустой, используем дефолтное значение
+	const query = searchQuery || category || 'history+popular';
 	const encodedQuery = encodeURIComponent(query);
-	const startIndex = page * 10; // 🔹 Вычисляем стартовый индекс
+	const startIndex = page * 20;
+
 	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodedQuery}&startIndex=${startIndex}&maxResults=20&key=${API_KEY}`);
 	const data = await response.json();
 
@@ -67,9 +67,6 @@ const booksListReducer = createSlice({
 		clearBookDetails(state) {
 			state.bookDetails = null;
 		},
-		incrementPage(state) {
-			state.page += 1; // Увеличиваем страницу при скролле вниз
-		},
 		addToFavorites(state, action) {
 			const book = action.payload;
 
@@ -98,11 +95,13 @@ const booksListReducer = createSlice({
 			state.minPrice = min;
 			state.maxPrice = max;
 
-			// Фильтруем только отображаемые книги, не изменяя `allBooks`
 			state.books = state.allBooks.filter(book => {
 				const price = book.saleInfo?.listPrice?.amount || 0;
 				return price >= min && price <= max;
 			});
+		},
+		setPage(state, action) {
+			state.page = action.payload;
 		},
 	},
 	extraReducers: builder => {
@@ -128,10 +127,7 @@ const booksListReducer = createSlice({
 			})
 			.addCase(fetchBooks.fulfilled, (state, action) => {
 				state.loading = false;
-
-				// Объединяем книги и убираем дубликаты
-				const combinedBooks = [...state.books, ...action.payload.books];
-				state.books = combinedBooks.filter((book, index, self) => self.findIndex(b => b.id === book.id) === index);
+				state.books = action.payload.books;
 				state.allBooks = action.payload.books;
 				state.page = action.payload.page;
 			})
@@ -147,7 +143,7 @@ const booksListReducer = createSlice({
 			})
 			.addCase(fetchDetailsBooks.fulfilled, (state, action) => {
 				state.loading = false;
-				state.bookDetails = action.payload; // Сохраняем объект книги
+				state.bookDetails = action.payload;
 			})
 			.addCase(fetchDetailsBooks.rejected, (state, action) => {
 				state.loading = false;
@@ -156,6 +152,6 @@ const booksListReducer = createSlice({
 	},
 });
 
-export const { setQuery, setInStock, incrementPage, clearBookDetails, toggleFilterByPrice, setIsSearching, addToFavorites, removeFromFavorites, setCategory, toggleFilterByInStock, setPriceRange } =
+export const { setQuery, setInStock, clearBookDetails, toggleFilterByPrice, setIsSearching, addToFavorites, removeFromFavorites, setCategory, toggleFilterByInStock, setPriceRange, setPage } =
 	booksListReducer.actions;
 export default booksListReducer.reducer;

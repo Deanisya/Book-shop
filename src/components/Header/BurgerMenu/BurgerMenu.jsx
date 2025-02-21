@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './BurgerMenu.module.scss';
 import Blur from '../../Cart/Blur/Blur';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 
 const BurgerMenu = () => {
-	const { isOpenMenuBurger } = useSelector((state) => state.cart);
+	const { isOpenMenuBurger } = useSelector(state => state.cart);
 
 	useEffect(() => {
 		if (isOpenMenuBurger) {

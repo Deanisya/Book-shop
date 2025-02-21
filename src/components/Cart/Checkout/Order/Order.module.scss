@@ -35,8 +35,21 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 96px 0;
+		column-gap: 15px;
+
+		@media (max-width: 768px) {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 40px;
+		}
 
 		.orderDetails {
+			display: flex;
+			flex-direction: column;
+			@media (max-width: 768px) {
+				align-items: center;
+				margin-bottom: 60px;
+			}
 			.orderDetailsTitle {
 				font-weight: 400;
 				font-size: 26px;
@@ -46,7 +59,17 @@
 			}
 			.orderDetailsWrapper {
 				display: flex;
-				gap: 135px;
+				gap: 5%;
+				@media (max-width: 480px) {
+					width: 80%;
+					flex-direction: column;
+					align-items: start;
+				}
+				@media (481px <= width <= 768px) {
+					width: 90%;
+					justify-content: center;
+					gap: 40px;
+				}
 				.orderDetailsBlockLeft {
 					display: flex;
 					flex-direction: column;
@@ -75,6 +98,11 @@
 		}
 
 		.checkoutOrder {
+			display: flex;
+			flex-direction: column;
+			@media (max-width: 768px) {
+				align-items: center;
+			}
 			.checkoutOrderTitle {
 				font-weight: 400;
 				font-size: 26px;
@@ -86,9 +114,13 @@
 				display: flex;
 				flex-direction: column;
 				gap: 26px;
-				padding: 39px 59px;
+				padding: 20px;
 				padding-bottom: 48px;
 				background: $light-colors-light-gray-light;
+
+				@media (max-width: 768px) {
+					width: 90%;
+				}
 				.checkoutOrderHeader {
 					font-weight: 400;
 					font-size: 16px;

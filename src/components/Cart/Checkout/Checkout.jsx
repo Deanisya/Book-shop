@@ -3,7 +3,7 @@ import classes from './Checkout.module.scss';
 import Title from '../../common/Title/Title';
 import Input from '../../common/Input/Input';
 import ButtonForm from '../../common/ButtonForm/ButtonForm';
-import { Link, Links } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SelectLabels from '../../common/Select/SelectLabels';
 import RadioBtn from '../../common/RadioBtn/RadioBtn';
 
@@ -19,12 +19,10 @@ const Checkout = () => {
 				</Link>
 			</div>
 			<div className={classes.checkoutCoupon}>
-				<p className={classes.checkoutCouponTitle}>
-					If you have a coupon code, please apply it below.
-				</p>
+				<p className={classes.checkoutCouponTitle}>If you have a coupon code, please apply it below.</p>
 				<form className={classes.checkoutCouponForm}>
 					<Input placeholder='Coupon Code' />
-					<ButtonForm width='40%' title='APPLY COUPON' />
+					<ButtonForm width='80%' title='APPLY COUPON' />
 				</form>
 			</div>
 			<div className={classes.checkoutOrderDetails}>
@@ -38,12 +36,7 @@ const Checkout = () => {
 							</div>
 							<SelectLabels />
 							<Input type='text' placeholder='Street Address *' required='required' />
-							<Input
-								pattern='^\d+(\.\d{1,2})?$'
-								type='number'
-								placeholder='Postcode / ZIP *'
-								required='required'
-							/>
+							<Input pattern='^\d+(\.\d{1,2})?$' type='number' placeholder='Postcode / ZIP *' required='required' />
 							<Input type='text' placeholder='Town / City *' required='required' />
 							<Input type='number' placeholder='Phone *' required='required' />
 							<Input type='email' placeholder='Email *' required='required' />
