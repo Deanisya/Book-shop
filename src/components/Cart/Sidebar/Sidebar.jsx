@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './Sidebar.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import Blur from '../Blur/Blur';
-import { clearCart, removeItem } from '../../../store/reducers/cartReducer';
 
-// import Cart from '../Cart';
 import CartItem from '../CartItem/CartItem';
 import { Link } from 'react-router-dom';
-import Counter from '../../common/Counter/Counter';
 import { openSidebar } from '../../../store/reducers/cartReducer';
 
 export default function () {

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../../store/reducers/booksListReducer';
 import MyFavorites from '../MyFavorites/MyFavorites';
 import AddInCart from '../AddInCart/AddInCart';
+import EmptyBlock from '../EmptyBlock/EmptyBlock';
 
 function RenderBooks({ books }) {
 	const { loading, error, category } = useSelector(state => state.booksList);
@@ -55,7 +56,7 @@ function RenderBooks({ books }) {
 					})}
 				</ul>
 			) : (
-				<p>Книг не найдено...</p>
+				<EmptyBlock title='Don`t find books' />
 			)}
 		</>
 	);

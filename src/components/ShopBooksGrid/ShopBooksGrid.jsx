@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar/SearchBar';
 import styles from './ShopBooksGrid.module.scss';
 import ShoppingBooks from './ShoppingBooks/ShoppingBooks';
-import DropdownFilter from '../DropdownFilter/DropdownFilter';
-import RangeSlider from './RangeSlider/RangeSlider';
 import FilterSection from '../ShopBooksGrid/FilterSection/FilterSection';
 import TuneIcon from '@mui/icons-material/Tune';
 
@@ -24,7 +21,7 @@ function ShopBooksGrid() {
 				<FilterSection />
 			</div>
 
-			<div style={{ minHeight: '65vh' }}>
+			<div>
 				<ShoppingBooks />
 			</div>
 		</div>

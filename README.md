@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# 📚 Shoppe Book
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Shoppe Book** - веб-приложениe для поиска и покупки книг.
 
-## Available Scripts
+<img src="../books-shop/src/img/screen1.png" alt="Image 1" width="200" height='100px' style="display: inline; margin-right: 10px;" />
+<img src="../books-shop/src/img/screen2.png" alt="Image 2" width="200" height='100px' style="display: inline;" />
+<img src="../books-shop/src/img/screen3.png" alt="Image 2" width="200" height='100px' style="display: inline;"  />
 
-In the project directory, you can run:
+## 📌 **Функционал**
 
-### `npm start`
+- **Реализован поиск книг по названию** 🔍
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - Это позволяет пользователям вводить название книги в строку поиска и мгновенно находить соответствующие книги в базе данных.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Фильтрация книг по параметрам** 🛠️
+  - Функциональность фильтрации позволяет пользователям ограничивать выборку книг по нескольким критериям:
+    Категория — пользователи могут выбирать книги по жанру (например: история, путешествия, психология и т.д.).  
+    Цена — можно фильтровать книги по диапазону цен, чтобы показывать только те книги, которые соответствуют выбранному бюджету.
+    Наличие на складе — этот фильтр помогает отображать только те книги, которые есть в наличии (и исключать те, которые временно отсутствуют).
+- **Добавление, удаление товара в корзину и удаление из нее** 🛒
+  - Когда пользователь нажимает кнопку "Добавить в корзину", товар автоматически добавляется в корзину, и его количество (если уже есть в корзине) увеличивается на единицу.Если товар еще не был добавлен в корзину, то он появляется в корзине с начальной единицей товара. При удалении товара, сумма всех оставшихся товаров пересчитывается.
+- **Пагинация списка книг** 📄
+  - Улучшает производительность и упрощает навигацию по большому количеству книг.
+- **Детальная информация о книге** 📖
+  - Пользователь может кликнуть на название или обложку книги, чтобы перейти на страницу с детальной информацией. Это станет хорошей возможностью ознакомиться с книгой перед её покупкой.
+- **Сохранение избранных книг** ❤️
+  - Пользователи могут сохранять книги в избранное для быстрого доступа в будущем. Это особенно полезно, если они не готовы купить книгу сразу, но хотят вернуться к ней позже.
+- **Возможность оставлять рейтинг и отзывы под каждой книгой** ⭐
+  - Пользователи могут оставить оценку и отзывы для книг, что помогает другим покупателям принимать решение о покупке.
+- **"Цитата дня"** 💭
+  - Функционал "Цитата дня" представляет собой интерактивный элемент, который позволяет пользователям получать цитату каждый день по их запросу, нажимая на кнопку.
 
-### `npm test`
+## Используется Google Books API для получения данных о книгах.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+📄 Документация: https://developers.google.com/books/docs/v1/using?hl=ru
 
-### `npm run build`
+```Javascript
+export const fetchPopularBooks = createAsyncThunk('books/fetchPopularBooks', async () => {
+	const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=history+popular&maxResults=18&orderBy=relevance&key=${API_KEY}`);
+	const data = await response.json();
+	return data.items || [];
+});
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ **Инструменты, которые использовались в разработке проекта**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Redux Toolkit** для управления состоянием
+- **React Router** для маршрутизации
+- **CLSX** для стилизации
+- **createAsyncThunk** для работы с API
+- использовались **createSlice** при создание **reducers**, вместо **'switch case'**. Это упростило синтаксис и разработку в целом.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| **Category**        | **Technologies**                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend**        | [![React](https://img.shields.io/static/v1?label=&message=React&color=61DAFB&logo=react&logoColor=FFFFFF)](https://react.dev/) [![Redux](https://img.shields.io/badge/redux-%23764ABC?logo=redux)](https://redux.js.org/)                                                                                                                                                                                         |
+| **Styling**         | [![SASS](https://img.shields.io/static/v1?label=&message=SASS&color=CC6699&logo=sass&logoColor=FFFFFF)](https://sass-lang.com/) [![MUI](https://img.shields.io/badge/Material%20UI-%23007FFF?logo=MUI&logoColor=white)](https://mui.com/) [![Bootstrap](https://img.shields.io/badge/React%20Bootstrap-black?logo=React-Bootstrap&logoColor=%2341E0FD)](https://react-bootstrap.github.io/docs/components/table/) |
+| **Version Control** | [![Git](https://img.shields.io/static/v1?label=&message=Git&color=F05032&logo=git&logoColor=FFFFFF)](https://git-scm.com/) [![GitHub](https://img.shields.io/static/v1?label=&message=GitHub&color=181717&logo=github&logoColor=FFFFFF)](https://github.com/)                                                                                                                                                     |
+| **AI & Tools**      | [![ChatGPT](https://img.shields.io/static/v1?label=&message=ChatGPT&color=00A67E&logo=openai&logoColor=FFFFFF)](https://openai.com/) [![Figma](https://img.shields.io/static/v1?label=&message=Figma&color=F24E1E&logo=figma&logoColor=FFFFFF)](https://www.figma.com/)                                                                                                                                           |
+| **Misc**            | [![Markdown](https://img.shields.io/static/v1?label=&message=Markdown&color=000000&logo=markdown&logoColor=FFFFFF)](https://www.markdownguide.org/)                                                                                                                                                                                                                                                               |
+| **Editors**         | [![VS Code](https://img.shields.io/static/v1?label=&message=VS%20Code&color=9013FE&logo=visualstudiocode&logoColor=FFFFFF)](https://code.visualstudio.com/)                                                                                                                                                                                                                                                       |
 
-### `npm run eject`
+## 📂 Установка и запуск
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Клонируй репозиторий
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/nifontovsv/books-shop.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Перейди в папку с проектом
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd books-shop
+```
 
-## Learn More
+3. Подгрузи зависимости
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Запусти проект
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm start
+```

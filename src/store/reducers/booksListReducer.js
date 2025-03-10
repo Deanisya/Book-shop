@@ -58,7 +58,7 @@ const booksListReducer = createSlice({
 		},
 		setQuery(state, action) {
 			state.query = action.payload;
-			state.page = 0; // Сбрасываем пагинацию при новом поиске
+			state.page = 0;
 		},
 		setIsSearching: (state, action) => {
 			state.isSearching = action.payload;

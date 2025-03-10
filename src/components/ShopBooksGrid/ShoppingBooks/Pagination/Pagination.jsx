@@ -13,12 +13,14 @@ const Pagination = () => {
 		if (page > 0) {
 			dispatch(setPage(page - 1));
 			dispatch(fetchBooks({ page: page - 1 }));
+			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 	};
 
 	const handleNext = () => {
 		dispatch(setPage(page + 1));
 		dispatch(fetchBooks({ page: page + 1 }));
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
 	return (
