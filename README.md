@@ -2,10 +2,6 @@
 
 **Shoppe Book** - веб-приложениe для поиска и покупки книг.
 
-<img src="../books-shop/src/img/screen1.png" alt="Image 1" width="200" height='100px' style="display: inline; margin-right: 10px;" />
-<img src="../books-shop/src/img/screen2.png" alt="Image 2" width="200" height='100px' style="display: inline;" />
-<img src="../books-shop/src/img/screen3.png" alt="Image 2" width="200" height='100px' style="display: inline;"  />
-
 ## 📌 **Функционал**
 
 - **Реализован поиск книг по названию** 🔍
