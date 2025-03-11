@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/book-shop/static/css/main.a412ec84.css",
+    "main.js": "/book-shop/static/js/main.f8a8634d.js",
+    "static/media/book1.png": "/book-shop/static/media/book1.df6d2055a5162851f539.png",
+    "static/media/античность3.jpg": "/book-shop/static/media/античность3.10bfc7544241c1b38a58.jpg",
+    "static/media/античность1.jpg": "/book-shop/static/media/античность1.0a8f5e9afaac811f7e26.jpg",
+    "static/media/античность2.jpg": "/book-shop/static/media/античность2.5e2c3aee085d060da127.jpg",
+    "static/media/pattern.png": "/book-shop/static/media/pattern.d1ac2a56c2383db8dd04.png",
+    "index.html": "/book-shop/index.html",
+    "main.a412ec84.css.map": "/book-shop/static/css/main.a412ec84.css.map",
+    "main.f8a8634d.js.map": "/book-shop/static/js/main.f8a8634d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a412ec84.css",
+    "static/js/main.f8a8634d.js"
+  ]
+}
