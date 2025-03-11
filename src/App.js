@@ -40,7 +40,7 @@ function App() {
 				<BurgerMenu />
 				<ScrollToTop />
 				<Routes>
-					<Route path='/book-shop' element={<PopularBooks />} />
+					<Route path='/Book-shop' element={<PopularBooks />} />
 					<Route path='shop' element={<ShopBooksGrid />} />
 					<Route path='/book/:id' element={<BookDetails />} />
 					<Route path='blog' element={<BookDetails />} />

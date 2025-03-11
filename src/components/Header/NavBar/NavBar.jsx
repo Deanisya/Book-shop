@@ -9,7 +9,7 @@ import Logo from '../Logo/Logo';
 import HeaderIcon from '../HeaderIcon/HeaderIcon';
 
 const NAV_ITEMS = [
-	{ path: '/book-shop', label: 'Home' },
+	{ path: '/Book-shop', label: 'Home' },
 	{ path: '/shop', label: 'Shop' },
 	{ path: '/contacts', label: 'Contacts' },
 	{ path: '/account', label: 'Account' },
