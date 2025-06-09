@@ -52,7 +52,7 @@ const OneBookDetails = ({ reviewsCount }) => {
 				Book published on:
 				{publishedDate}
 			</p>
-			<span className={s.bookPrice}>{listPrice ? `${listPrice.amount} ${listPrice.currencyCode}` : 'Распродано'}</span>
+			<span className={s.bookPrice}>{listPrice ? `${Math.round(listPrice.amount)} $` : 'Распродано'}</span>
 			<div className={s.bookRaiting}>
 				<div className={s.bookRaitingStars}>
 					<svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>

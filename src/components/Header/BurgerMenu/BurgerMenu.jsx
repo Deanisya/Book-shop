@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './BurgerMenu.module.scss';
 import Blur from '../../Cart/Blur/Blur';
 import { useSelector } from 'react-redux';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/NavBar';
 
 const BurgerMenu = () => {
 	const { isOpenMenuBurger } = useSelector(state => state.cart);

@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './Logo/Logo';
-import Navbar from './Navbar/Navbar';
+import Navbar from './Navbar/NavBar';
 import styles from './Header.module.scss';
 import { useMediaQuery } from '@mui/material';
 import Burger from '../Header/Burger/Burger';
